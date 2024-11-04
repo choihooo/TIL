@@ -7,7 +7,7 @@ interface NavBarProps {
 export default function NavBar({ author }: NavBarProps) {
   return (
     <div className={styles.navbar}>
-      <div>{author}'s TIL</div>
+      <div>{author}&apos;s TIL</div>
     </div>
   );
 }
