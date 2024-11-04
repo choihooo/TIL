@@ -1,0 +1,13 @@
+# config.yaml
+
+site:
+  title: "Howu's TIL"
+  description: "공부기록하는 사이트"
+  author: "Howu"
+  url: "https://myblog.com"
+  language: "ko"
+
+social:
+  twitter: "https://twitter.com/username"
+  github: "https://github.com/choihooo"
+  linkedin: "https://linkedin.com/in/username"
