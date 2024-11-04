@@ -1,59 +1,89 @@
 .calendar {
-  width: 672px;
-  margin: 0 auto;
-  text-align: center;
-}
+  &__container {
+    width: 780px;
+    height: 360px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 40px;
+  }
 
-.calendarHeader {
-  display: flex;
-  gap: 2px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
+  &__header {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
 
-.calendarGrid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-}
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    width: 672px;
+  }
 
-.calendarDayName {
-  font-weight: bold;
-}
+  &__day-name {
+    font-weight: bold;
+  }
 
-.calendarDay {
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px; /* 칸의 높이 */
-  position: relative;
-}
+  &__day-cell {
+    border-radius: 4px;
+    border: 1px solid #000;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    position: relative;
+  }
 
-.date {
-  font-size: 16px;
-  padding-top: 8px;
-}
+  &__date {
+    font-size: 16px;
+    padding-top: 8px;
+  }
 
-.stamp {
-  font-size: 14px;
-  color: black;
-  padding-bottom: 8px;
-  border-top: 1px solid #000; /* 상단에 선을 추가하여 구분 */
-  width: 100%;
-  height: 50px;
-  text-align: center;
-}
+  &__stamp {
+    font-size: 14px;
+    padding-bottom: 8px;
+    border-top: 1px solid #000;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.currentMonth {
-  color: #333;
-}
+  &__day-cell--current-month {
+    color: #333;
+  }
 
-.otherMonth {
-  color: #aaa;
+  &__day-cell--other-month {
+    color: #aaa;
+  }
+
+  &__right-column {
+    display: flex;
+    flex-direction: column;
+    width: 96px;
+    gap: 5px;
+  }
+
+  &__grid-wrapper {
+    display: flex;
+    gap: 12px;
+  }
+
+  &__button {
+    background-color: white;
+    border: #000 solid 1px;
+    margin: 2px;
+  }
+
+  &__year-month {
+    font-size: 20px;
+    font-weight: 500;
+  }
 }
