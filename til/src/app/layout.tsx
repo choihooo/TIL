@@ -1,3 +1,6 @@
+import "../../styles/reset.css";
+import "./global.scss";
+
 import type { Metadata } from "next";
 import NavBar from "./components/NavBar";
 import getConfig from "../../lib/getConfig";

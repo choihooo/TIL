@@ -1,0 +1,59 @@
+.calendar {
+  width: 672px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.calendarHeader {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendarDayName {
+  font-weight: bold;
+}
+
+.calendarDay {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px; /* 칸의 높이 */
+  position: relative;
+}
+
+.date {
+  font-size: 16px;
+  padding-top: 8px;
+}
+
+.stamp {
+  font-size: 14px;
+  color: black;
+  padding-bottom: 8px;
+  border-top: 1px solid #000; /* 상단에 선을 추가하여 구분 */
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+.currentMonth {
+  color: #333;
+}
+
+.otherMonth {
+  color: #aaa;
+}

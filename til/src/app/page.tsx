@@ -1,5 +1,5 @@
-import Image from "next/image";
+import StampCalendar from "./components/StampCalendar";
 
 export default function Home() {
-  return <div>asd</div>;
+  return <StampCalendar />;
 }
