@@ -1,7 +1,8 @@
+@import "../../../styles/variables";
+
 .calendar {
   &__container {
     width: 780px;
-    height: 360px;
     margin: 0 auto;
     text-align: center;
     margin-top: 40px;
@@ -40,12 +41,11 @@
   }
 
   &__date {
-    font-size: 16px;
+    font-size: $font-sm;
     padding-top: 8px;
   }
 
   &__stamp {
-    font-size: 14px;
     padding-bottom: 8px;
     border-top: 1px solid #000;
     width: 100%;
@@ -83,7 +83,7 @@
   }
 
   &__year-month {
-    font-size: 20px;
+    font-size: $font-md;
     font-weight: 500;
   }
 }

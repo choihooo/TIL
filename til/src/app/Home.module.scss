@@ -11,6 +11,9 @@
   display: flex;
   justify-content: center;
 }
+.column:nth-child(2) {
+  flex-direction: column;
+}
 
 @media (max-width: 1440px) {
   .column:nth-child(1),

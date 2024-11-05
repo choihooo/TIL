@@ -1,0 +1,26 @@
+@import "../../../styles/variables";
+
+.content {
+  height: 70%;
+  margin-top: 44px;
+  &__section {
+    margin-top: 16px;
+  }
+  &__title {
+    font-size: $font-l;
+  }
+  &__list {
+    margin-top: 8px;
+  }
+  &__item {
+    margin-bottom: 4px;
+    &-text {
+      font-size: $font-md;
+    }
+    &-date {
+      font-size: $font-sm;
+      color: gray;
+      margin-left: 4px;
+    }
+  }
+}

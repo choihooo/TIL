@@ -17,7 +17,7 @@ export default function AllTag() {
     { id: 3, label: "태그" },
     { id: 4, label: "리액트를 공부하자" },
     { id: 5, label: "넥스트가 더 중요할지도??" },
-    { id: 6, label: "뭐가 중요해 그냥 둘 다 하면 되는거야" },
+    { id: 6, label: "뭐가 중요해 그냥 둘 다" },
   ];
 
   const handleSelect = (id: number) => {
