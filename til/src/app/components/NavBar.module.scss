@@ -1,0 +1,11 @@
+@import "../../../styles/variables";
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $font-xl;
+  height: 70px;
+  width: 100%;
+  background-color: #f5f5dc;
+}
