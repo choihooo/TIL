@@ -3,7 +3,6 @@ import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import dayjs from "dayjs";
-import { notFound } from "next/navigation";
 import MDXContent from "./components/MDXContent";
 
 interface PostMatter {
@@ -44,6 +43,5 @@ export default async function PostPage({
     );
   } catch (error) {
     console.error("Error loading post:", error);
-    notFound();
   }
 }
