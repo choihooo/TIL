@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 
 // MDXContent를 동적 import하여 클라이언트 전용으로 사용
 const MDXContent = dynamic(() => import("./components/MDXContent"), {
-  ssr: false, // 서버사이드 렌더링 비활성화 (클라이언트에서만 렌더링)
+  ssr: false,
 });
 
 interface PostMatter {
