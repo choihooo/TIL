@@ -4,14 +4,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import dayjs from "dayjs";
 import { notFound } from "next/navigation";
-import MDXContent from "./components/MDXcontent";
-
-interface PostPageProps {
-  params: {
-    category: string;
-    slug: string;
-  };
-}
+import MDXContent from "./components/MDXContent";
 
 interface PostMatter {
   title: string;
@@ -19,8 +12,14 @@ interface PostMatter {
   category?: string;
 }
 
-export default async function PostPage({ params }: PostPageProps) {
-  const { category, slug } = params;
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ category: string; slug: string }>;
+}) {
+  const resolvedParams = await params; // Résolution de la promesse pour obtenir les valeurs
+
+  const { category, slug } = resolvedParams;
 
   const filePath = path.join(process.cwd(), "posts", category, `${slug}.mdx`);
 

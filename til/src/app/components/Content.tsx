@@ -8,17 +8,6 @@ import Link from "next/link";
 
 const POSTS_PATH = path.join(process.cwd(), "posts");
 
-interface Post {
-  url: string;
-  category: string;
-  slug: string;
-  title: string;
-  date: string;
-  dateString: string;
-  readingMinutes: number;
-  content: string;
-}
-
 const parsePostAbstract = (postPath: string) => {
   const relativePath = postPath
     .slice(postPath.indexOf("posts") + "posts".length + 1)
