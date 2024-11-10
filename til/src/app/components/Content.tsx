@@ -1,53 +1,89 @@
 import styles from "./Content.module.scss";
+import fs from "fs/promises";
+import path from "path";
+import dayjs from "dayjs";
+import matter from "gray-matter";
+import readingTime from "reading-time";
+import Link from "next/link";
 
-export default function Content() {
+const POSTS_PATH = path.join(process.cwd(), "posts");
+
+interface Post {
+  url: string;
+  category: string;
+  slug: string;
+  title: string;
+  date: string;
+  dateString: string;
+  readingMinutes: number;
+  content: string;
+}
+
+const parsePostAbstract = (postPath: string) => {
+  const relativePath = postPath
+    .slice(postPath.indexOf("posts") + "posts".length + 1)
+    .replace(".mdx", "");
+
+  const [category, slug] = relativePath.split("/"); // category와 slug 분리
+  const url = `/${category}/${slug}`;
+
+  console.log(`URL: ${url}, Category: ${category}, Slug: ${slug}`);
+
+  return { url, category, slug };
+};
+
+const parsePostDetail = async (postPath: string) => {
+  const file = await fs.readFile(postPath, "utf8");
+  const { data, content } = matter(file);
+
+  const readingMinutes = Math.ceil(readingTime(content).minutes);
+  const dateString = dayjs(data.date).locale("ko").format("YYYY년 MM월 DD일");
+
+  return {
+    title: data.title,
+    date: data.date,
+    content,
+    readingMinutes,
+    dateString,
+  };
+};
+
+export default async function Content() {
+  const categoryFolders = await fs.readdir(POSTS_PATH);
+
+  const postFiles = (
+    await Promise.all(
+      categoryFolders.map(async (category) => {
+        const categoryPath = path.join(POSTS_PATH, category);
+        const files = await fs.readdir(categoryPath);
+        return files.map((file) => path.join(categoryPath, file));
+      })
+    )
+  ).flat();
+
+  const posts = await Promise.all(
+    postFiles.map(async (filePath) => {
+      const postAbstract = parsePostAbstract(filePath);
+      const postDetail = await parsePostDetail(filePath);
+      return { ...postAbstract, ...postDetail };
+    })
+  );
+
   return (
     <div className={styles["content"]}>
       <div className={styles["content__section"]}>
         <div className={styles["content__title"]}>최근 글 바로가기</div>
         <ul className={styles["content__list"]}>
-          <li className={styles["content__item"]}>
-            <span className={styles["content__item-text"]}>
-              데이터베이스 정규화
-            </span>
-            <span className={styles["content__item-date"]}>31 Mar 2018</span>
-          </li>
-          <li className={styles["content__item"]}>
-            <span className={styles["content__item-text"]}>
-              HTTPS와 SSL 인증서, SSL 동작방법
-            </span>
-            <span className={styles["content__item-date"]}>11 Mar 2018</span>
-          </li>
-          <li className={styles["content__item"]}>
-            <span className={styles["content__item-text"]}>
-              Django 배포연습 4 - uwsgi 를 통한 Django 실행
-            </span>
-            <span className={styles["content__item-date"]}>04 Mar 2018</span>
-          </li>
-        </ul>
-      </div>
-
-      <div className={styles["content__section"]}>
-        <div className={styles["content__title"]}>알고리즘 문제풀이</div>
-        <ul className={styles["content__list"]}>
-          <li className={styles["content__item"]}>
-            <span className={styles["content__item-text"]}>
-              hackerrank - Nested Lists
-            </span>
-            <span className={styles["content__item-date"]}>04 Nov 2017</span>
-          </li>
-          <li className={styles["content__item"]}>
-            <span className={styles["content__item-text"]}>
-              hackerrank - Finding the percentage
-            </span>
-            <span className={styles["content__item-date"]}>04 Nov 2017</span>
-          </li>
-          <li className={styles["content__item"]}>
-            <span className={styles["content__item-text"]}>
-              leetcode 657. Judge Route Circle
-            </span>
-            <span className={styles["content__item-date"]}>21 Oct 2017</span>
-          </li>
+          {posts.map((post, index) => (
+            <li key={index} className={styles["content__item"]}>
+              <Link href={post.url} className={styles["content__item-text"]}>
+                {post.title}
+              </Link>
+              <span className={styles["content__item-date"]}>
+                {post.dateString}
+              </span>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

@@ -1,0 +1,18 @@
+---
+title: "Next.js에서 Markdown 파일로 블로그 만들기"
+date: "2024-11-07"
+category: "Next.js"
+tags: ["Next.js", "Markdown", "Static Generation", "Blogging"]
+---
+
+Next.js를 사용하여 Markdown 파일로 블로그를 만드는 방법에 대해 알아봅니다. 이 튜토리얼에서는 Markdown 파일을 동적으로 라우팅하고, 태그를 사용하여 게시물 분류를 쉽게 하는 방법을 다룹니다.
+
+## 1. 프로젝트 설정
+
+Next.js 프로젝트를 생성하고 필요한 라이브러리를 설치합니다.
+
+```bash
+npx create-next-app my-blog
+cd my-blog
+npm install gray-matter remark remark-html
+```
