@@ -3,7 +3,12 @@ import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import dayjs from "dayjs";
-import MDXContent from "./components/MDXContent";
+import dynamic from "next/dynamic";
+
+// MDXContent를 동적 import하여 클라이언트 전용으로 사용
+const MDXContent = dynamic(() => import("./components/MDXContent"), {
+  ssr: false,
+});
 
 interface PostMatter {
   title: string;
@@ -16,10 +21,8 @@ export default async function PostPage({
 }: {
   params: Promise<{ category: string; slug: string }>;
 }) {
-  const resolvedParams = await params; // Résolution de la promesse pour obtenir les valeurs
-
+  const resolvedParams = await params;
   const { category, slug } = resolvedParams;
-
   const filePath = path.join(process.cwd(), "posts", category, `${slug}.mdx`);
 
   try {
@@ -27,6 +30,7 @@ export default async function PostPage({
     const { data, content } = matter(fileContents);
     const grayMatter = data as PostMatter;
 
+    // MDX 콘텐츠를 직렬화
     const mdxSource = await serialize(content);
     const dateString = dayjs(grayMatter.date)
       .locale("ko")
@@ -37,6 +41,7 @@ export default async function PostPage({
         <h1>{grayMatter.title}</h1>
         <p>{dateString}</p>
         <article>
+          {/* MDXContent를 클라이언트 전용 컴포넌트로 사용 */}
           <MDXContent source={mdxSource} />
         </article>
       </div>
