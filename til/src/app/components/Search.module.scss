@@ -7,6 +7,7 @@
     border: 1px solid $border-color;
     margin-top: 96px;
     padding: 20px;
+    border-radius: 10px;
   }
   &__input-wrapper {
     position: relative;
@@ -56,13 +57,9 @@
       font-size: $font-md2;
       margin-top: 8px;
 
-      /* 여러 줄 생략 설정 */
       display: -webkit-box;
-      display: box;
       -webkit-line-clamp: 3;
-      line-clamp: 3;
       -webkit-box-orient: vertical;
-      box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
     }
