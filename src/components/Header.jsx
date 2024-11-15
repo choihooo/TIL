@@ -5,7 +5,7 @@ function Header() {
   return (
     <header>
       <h1>
-        <Link to="/">My Markdown Blog</Link>
+        <Link to="/">호의 배움 기록</Link>
       </h1>
       <nav>
         <Link to="/">Home</Link>
