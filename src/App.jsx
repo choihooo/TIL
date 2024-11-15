@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home";
 import PostDetail from "./pages/PostDetail";
+import "./App.scss";
 
 function App() {
   useEffect(() => {
@@ -17,14 +18,16 @@ function App() {
 
   return (
     <Router>
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/post/:id" element={<PostDetail />} />
-        </Routes>
-      </main>
-      <Footer />
+      <div className="app-container">
+        <Header className="header" />
+        <main className="main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/post/:id" element={<PostDetail />} />
+          </Routes>
+        </main>
+        <Footer className="footer" />
+      </div>
     </Router>
   );
 }

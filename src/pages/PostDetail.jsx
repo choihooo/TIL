@@ -1,4 +1,3 @@
-// src/pages/PostDetail.js
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getPost } from "../utils/postService";
@@ -7,24 +6,28 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import "highlight.js/styles/github.css";
+import "./PostDetail.scss";
 
 function PostDetail() {
   const { id } = useParams();
   const [postContent, setPostContent] = useState("");
+  const [postTitle, setPostTitle] = useState("");
+  const [postDate, setPostDate] = useState("");
   const [headings, setHeadings] = useState([]);
   const markdownRef = useRef(null);
 
   useEffect(() => {
     const fetchPostContent = async () => {
-      const markdown = await getPost(id);
-      setPostContent(markdown);
+      const { content, title, date } = await getPost(id);
+      setPostContent(content);
+      setPostTitle(title);
+      setPostDate(date);
     };
     fetchPostContent();
   }, [id]);
 
   useEffect(() => {
     if (markdownRef.current) {
-      // 특정 Markdown 콘텐츠 내에서만 헤딩 요소 추출
       const headingElements = Array.from(
         markdownRef.current.querySelectorAll("h1, h2, h3, h4, h5, h6")
       );
@@ -38,17 +41,16 @@ function PostDetail() {
   }, [postContent]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        position: "relative",
-      }}
-    >
+    <div className="post-detail">
+      {/* Post Header with Title and Date */}
+      <header className="post-detail__header">
+        <h1 className="post-detail__header-title">{postTitle}</h1>
+        <p className="post-detail__header-date">{postDate}</p>
+      </header>
+
       {/* Post Content */}
-      <main style={{ flex: 1, maxWidth: "800px" }}>
-        <h1>Post Detail</h1>
-        <div ref={markdownRef}>
+      <main className="post-detail__content">
+        <div ref={markdownRef} className="post-detail__content-markdown">
           <ReactMarkdown
             rehypePlugins={[
               rehypeHighlight,
@@ -62,25 +64,13 @@ function PostDetail() {
       </main>
 
       {/* Floating TOC */}
-      <aside
-        style={{
-          position: "fixed",
-          top: "20px",
-          right: "5%",
-          width: "200px",
-          maxHeight: "80vh",
-          overflowY: "auto",
-          backgroundColor: "#f9f9f9",
-          padding: "1rem",
-          borderRadius: "8px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <h2>Table of Contents</h2>
-        <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
+      <aside className="post-detail__toc">
+        <h2 className="post-detail__toc-title">Table of Contents</h2>
+        <ul className="post-detail__toc-list">
           {headings.map((heading) => (
             <li
               key={heading.id}
+              className="post-detail__toc-list-item"
               style={{ marginLeft: (heading.level - 1) * 10 }}
             >
               <a href={`#${heading.id}`}>{heading.text}</a>

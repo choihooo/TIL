@@ -1,0 +1,21 @@
+/* 전체 페이지 레이아웃 */
+.app-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* 헤더, 메인, 푸터의 높이 설정 */
+  grid-template-columns: 1fr; /* 한 열로 구성 */
+  min-height: 100vh; /* 화면 전체 높이 */
+}
+
+.header {
+  grid-row: 1 / 2; /* 첫 번째 행 */
+}
+
+.main {
+  grid-row: 2 / 3; /* 두 번째 행 (컨텐츠) */
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.footer {
+  grid-row: 3 / 4; /* 마지막 행 */
+}

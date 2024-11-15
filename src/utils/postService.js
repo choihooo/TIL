@@ -23,6 +23,10 @@ export async function getPosts() {
 export async function getPost(id) {
   const response = await fetch(`/posts/${id}.md`);
   const markdown = await response.text();
-  const { body } = fm(markdown);
-  return body;
+  const { attributes, body } = fm(markdown);
+  return {
+    title: attributes.title,
+    date: attributes.date,
+    content: body, // 전체 내용을 content로 반환
+  };
 }

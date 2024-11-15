@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PostList from "../components/PostList";
 import { getPosts } from "../utils/postService";
+import "./Home.scss";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -15,9 +16,11 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>Blog Posts</h1>
-      <PostList posts={posts} />
+    <div className="home">
+      <h1 className="home__title">Blog Posts</h1>
+      <div className="home__post-list">
+        <PostList posts={posts} />
+      </div>
     </div>
   );
 }

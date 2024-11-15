@@ -1,0 +1,49 @@
+// _variable.scss
+
+// Main Colors
+$accent-100: #ff7c00 !default;
+$accent-90: rgba(255, 124, 0, 0.9) !default;
+$accent-80: rgba(255, 124, 0, 0.8) !default;
+$accent-70: rgba(255, 124, 0, 0.7) !default;
+$accent-60: rgba(255, 124, 0, 0.6) !default;
+$accent-50: rgba(255, 124, 0, 0.5) !default;
+$accent-40: rgba(255, 124, 0, 0.4) !default;
+$accent-30: rgba(255, 124, 0, 0.3) !default;
+$accent-20: rgba(255, 124, 0, 0.2) !default;
+$accent-10: rgba(255, 124, 0, 0.1) !default;
+
+$primary-100: #5797ff !default;
+$primary-90: rgba(87, 151, 255, 0.9) !default;
+$primary-80: rgba(87, 151, 255, 0.8) !default;
+$primary-70: rgba(87, 151, 255, 0.7) !default;
+$primary-60: rgba(87, 151, 255, 0.6) !default;
+$primary-50: rgba(87, 151, 255, 0.5) !default;
+$primary-40: rgba(87, 151, 255, 0.4) !default;
+$primary-30: rgba(87, 151, 255, 0.3) !default;
+$primary-20: rgba(87, 151, 255, 0.2) !default;
+$primary-10: rgba(87, 151, 255, 0.1) !default;
+
+$secondary: #1f1f1f !default;
+
+// Main Variant Colors
+$accent-hover: #d95c00 !default;
+$accent-pressed: #b44c00 !default;
+
+$primary-hover: #3f7ed9 !default;
+$primary-pressed: #3266b4 !default;
+
+// Basic (Text Color)
+$b-50: #e9e9e9 !default;
+$b-100: #d4d4d4 !default;
+$b-200: #bfbfbf !default;
+$b-300: #a9a9a9 !default;
+$b-400: #949494 !default;
+$b-500: #7f7f7f !default;
+$b-600: #696969 !default;
+$b-700: #545454 !default;
+$b-800: #3f3f3f !default;
+$b-900: #292929 !default;
+
+// Black and White
+$white: #ffffff !default;
+$black: #000000 !default;
