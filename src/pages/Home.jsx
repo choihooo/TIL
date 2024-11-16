@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PostList from "../components/PostList";
+import PostList from "../components/PostList/PostList";
 import { getPosts } from "../utils/postService";
 import "./Home.scss";
 
@@ -17,7 +17,7 @@ function Home() {
 
   return (
     <div className="home">
-      <h1 className="home__title">Blog Posts</h1>
+      <h1 className="home__title">최신 글</h1>
       <div className="home__post-list">
         <PostList posts={posts} />
       </div>
