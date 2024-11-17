@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import PostList from "../components/PostList/PostList";
-import { getPosts } from "../utils/postService";
+import PostList from "../../components/PostList/PostList";
+import { getPosts } from "../../utils/postService";
 import "./Home.scss";
 
 function Home() {

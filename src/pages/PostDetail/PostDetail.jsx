@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { getPost } from "../utils/postService";
+import { getPost } from "../../utils/postService";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import Tag from "../../components/Tag/Tag";
 import "highlight.js/styles/github.css";
 import "./PostDetail.scss";
 
@@ -13,15 +14,19 @@ function PostDetail() {
   const [postContent, setPostContent] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [postDate, setPostDate] = useState("");
+  const [postCategory, setPostCategory] = useState({});
+  const [postTags, setPostTags] = useState([]);
   const [headings, setHeadings] = useState([]);
   const markdownRef = useRef(null);
 
   useEffect(() => {
     const fetchPostContent = async () => {
-      const { content, title, date } = await getPost(id);
+      const { content, title, date, category, tags } = await getPost(id);
       setPostContent(content);
       setPostTitle(title);
       setPostDate(date);
+      setPostCategory(category);
+      setPostTags(tags);
     };
     fetchPostContent();
   }, [id]);
@@ -42,13 +47,21 @@ function PostDetail() {
 
   return (
     <div className="post-detail">
-      {/* Post Header with Title and Date */}
       <header className="post-detail__header">
         <h1 className="post-detail__header-title">{postTitle}</h1>
         <p className="post-detail__header-date">{postDate}</p>
+        <div className="post-detail__header-category">
+          <span className="post-detail__header-category-main">
+            {postCategory.main + "/" + postCategory.sub}
+          </span>
+        </div>
+        <div className="post-detail__header-tags">
+          {postTags.map((tag, index) => (
+            <Tag key={index} label={tag} />
+          ))}
+        </div>
       </header>
 
-      {/* Post Content */}
       <main className="post-detail__content">
         <div ref={markdownRef} className="post-detail__content-markdown">
           <ReactMarkdown
@@ -63,9 +76,8 @@ function PostDetail() {
         </div>
       </main>
 
-      {/* Floating TOC */}
       <aside className="post-detail__toc">
-        <h2 className="post-detail__toc-title">Table of Contents</h2>
+        <h2 className="post-detail__toc-title">{postTitle}</h2>
         <ul className="post-detail__toc-list">
           {headings.map((heading) => (
             <li

@@ -2,6 +2,9 @@
 title: "Understanding React Hooks"
 date: "2024-11-11"
 tags: ["React", "JavaScript", "Hooks"]
+category:
+  main: "Programming"
+  sub: "React"
 ---
 
 # React Hooks: An Introduction

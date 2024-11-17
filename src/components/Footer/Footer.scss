@@ -1,4 +1,4 @@
-@use "../../styles/_variable.scss" as *; // as *로 모든 변수를 전역으로 가져옴
+@use "@styles/_variables.scss" as *;
 
 .footer {
   background-color: $primary-100;

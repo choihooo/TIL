@@ -1,4 +1,4 @@
-@use "../styles/variable" as *; // 색상 변수 파일 가져오기
+@use "@styles/_variables.scss" as *;
 
 .home {
   padding: 20px;

@@ -2,6 +2,9 @@
 title: "My First Post"
 date: "2024-11-10"
 tags: ["Introduction", "Getting Started"]
+category:
+  main: "Personal"
+  sub: "Introduction"
 ---
 
 # Welcome to My Blog

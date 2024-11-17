@@ -1,4 +1,3 @@
-// src/utils/postService.js
 import fm from "front-matter";
 
 export async function getPosts() {
@@ -13,7 +12,9 @@ export async function getPosts() {
         id: postId,
         title: attributes.title,
         date: attributes.date,
-        excerpt: body.slice(0, 100) + "...", // 내용 일부를 발췌
+        excerpt: body.slice(0, 100) + "...",
+        category: attributes.category,
+        tags: attributes.tags || [],
       };
     })
   );
@@ -27,6 +28,8 @@ export async function getPost(id) {
   return {
     title: attributes.title,
     date: attributes.date,
-    content: body, // 전체 내용을 content로 반환
+    category: attributes.category,
+    tags: attributes.tags || [],
+    content: body,
   };
 }
