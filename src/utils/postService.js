@@ -1,9 +1,11 @@
 import fm from "front-matter";
 
 export async function getPosts() {
-  const posts = ["post1", "post2"];
+  // posts.json 파일에서 파일 목록 가져오기
+  const fileNames = await fetch("/posts.json").then((res) => res.json());
+
   const postData = await Promise.all(
-    posts.map(async (postId) => {
+    fileNames.map(async (postId) => {
       const markdown = await fetch(`/posts/${postId}.md`).then((res) =>
         res.text()
       );
@@ -18,7 +20,9 @@ export async function getPosts() {
       };
     })
   );
-  return postData;
+
+  // 날짜 기준 내림차순 정렬
+  return postData.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
 export async function getPost(id) {

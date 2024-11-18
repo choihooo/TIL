@@ -6,7 +6,7 @@ function Header() {
   return (
     <header className="header">
       <h1 className="header__title">
-        <Link to="/">호의 배움 기록</Link>
+        <Link to="/">Ho's Archive</Link>
       </h1>
       <div className="header__nav">
         <nav className="header__nav-link">
