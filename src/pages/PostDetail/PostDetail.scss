@@ -59,6 +59,7 @@
       margin-top: 10px;
       display: flex;
       justify-content: center;
+
       div {
         font-size: 0.95rem;
         font-weight: bold;
@@ -94,6 +95,73 @@
         &:hover {
           color: $primary-hover;
         }
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+
+        li {
+          margin-bottom: 8px;
+
+          // 체크박스 스타일
+          .markdown-checkbox {
+            appearance: none; // 모든 브라우저의 기본 스타일 제거
+            border: 1px solid black;
+            background-color: $white;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            border-radius: 4px; // 네모난 체크박스에 둥근 모서리 추가
+            cursor: pointer; // 클릭 가능한 상태로 표시
+
+            &:checked {
+              background-color: $primary-100;
+              border-color: $primary-100;
+            }
+
+            &:disabled {
+              background-color: $b-200; // 비활성화된 상태의 배경색
+              cursor: not-allowed;
+            }
+          }
+
+          // 텍스트 스타일
+          span {
+            color: $b-700;
+            font-size: 1rem;
+            line-height: 1.6;
+
+            &.nested-text {
+              padding-left: 24px; // 하위 텍스트 들여쓰기
+              color: $b-500;
+              font-size: 0.95rem;
+            }
+          }
+        }
+
+        // 중첩된 리스트 스타일
+        ul {
+          padding-left: 24px; // 부모 리스트와의 간격
+          margin-top: 8px;
+
+          li {
+            margin-bottom: 6px;
+
+            .markdown-checkbox {
+              width: 14px;
+              height: 14px;
+            }
+          }
+        }
+      }
+
+      // input 스타일 초기화 무시
+      input[type="checkbox"] {
+        appearance: checkbox; // 기본 체크박스 스타일 유지
+        border: none;
+        cursor: not-allowed;
+        margin-right: 8px;
       }
     }
   }
@@ -133,10 +201,51 @@
       }
     }
   }
+
+  @media (max-width: 768px) {
+    .post-detail__toc {
+      display: none;
+    }
+  }
 }
 
-@media (max-width: 768px) {
-  .post-detail__toc {
-    display: none;
+.post-detail__content-markdown code {
+  background-color: #e8e8e8;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.markdown-container {
+  line-height: 1.6;
+
+  .custom-ul,
+  .custom-ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem; // 기본 들여쓰기
+  }
+
+  .custom-ul {
+    list-style-type: disc; // 순서 없는 목록 표시 추가
+  }
+  .custom-ol {
+    list-style: decimal; // 숫자 스타일
+  }
+
+  .custom-li {
+    margin-bottom: 0.5rem;
+
+    &::marker {
+      color: #555;
+    }
+  }
+
+  ul ul,
+  ol ol,
+  ul ol,
+  ol ul,
+  ol li {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem; // 중첩된 리스트 더 깊게 들여쓰기
   }
 }

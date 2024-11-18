@@ -13,14 +13,18 @@
   "dependencies": {
     "front-matter": "^4.0.2",
     "gray-matter": "^4.0.3",
+    "highlight.js": "^11.10.0",
+    "prismjs": "^1.29.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.28.0",
+    "react-syntax-highlighter": "^15.6.1",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-highlight": "^7.0.1",
     "rehype-slug": "^6.0.0",
     "remark": "^15.0.1",
+    "remark-gfm": "^4.0.0",
     "remark-html": "^16.0.1"
   },
   "devDependencies": {

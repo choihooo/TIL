@@ -5,6 +5,9 @@ import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import remarkGfm from "remark-gfm";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Tag from "../../components/Tag/Tag";
 import "highlight.js/styles/github.css";
 import "./PostDetail.scss";
@@ -63,13 +66,61 @@ function PostDetail() {
       </header>
 
       <main className="post-detail__content">
-        <div ref={markdownRef} className="post-detail__content-markdown">
+        <div
+          ref={markdownRef}
+          className="post-detail__content-markdown markdown-container"
+        >
           <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
             rehypePlugins={[
               rehypeHighlight,
               rehypeSlug,
               [rehypeAutolinkHeadings, { behavior: "wrap" }],
             ]}
+            components={{
+              li({ children, ...props }) {
+                const checkboxRegex = /^\[([ xX])\] (.+)$/; // 체크박스 패턴 정규식
+                const match = children[0]?.props?.children
+                  ?.toString()
+                  .match(checkboxRegex);
+
+                // 체크박스가 포함된 경우
+                if (match) {
+                  const isChecked = match[1].toLowerCase() === "x"; // 체크 여부 판단
+                  const text = match[2]; // 체크박스 이후 텍스트 추출
+                  return (
+                    <li {...props}>
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        readOnly
+                        className="markdown-checkbox" // 체크박스 스타일 클래스
+                      />
+                      <span>{text}</span>
+                    </li>
+                  );
+                }
+
+                // 일반 리스트 항목
+                return <li {...props}>{children}</li>;
+              },
+              blockquote({ children }) {
+                return <blockquote>{children}</blockquote>;
+              },
+              ul({ children }) {
+                return <ul className="custom-ul">{children}</ul>;
+              },
+              ol({ children }) {
+                return <ol className="custom-ol">{children}</ol>;
+              },
+              li({ children, ...props }) {
+                return (
+                  <li className="custom-li" {...props}>
+                    {children}
+                  </li>
+                );
+              },
+            }}
           >
             {postContent}
           </ReactMarkdown>
