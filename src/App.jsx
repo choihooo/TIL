@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -43,15 +43,6 @@ function Layout() {
 }
 
 function App() {
-  useEffect(() => {
-    document.title = import.meta.env.VITE_APP_TITLE;
-
-    const favicon = document.querySelector("link[rel='icon']");
-    if (favicon) {
-      favicon.href = import.meta.env.VITE_APP_FAVICON;
-    }
-  }, []);
-
   return (
     <Router>
       <Layout />

@@ -15,6 +15,9 @@ function PostList({ posts }) {
           <Post post={post} />
         </div>
       ))}
+      <div className="flex justify-center items-center w-full">
+        <img src="https://render.gitanimals.org/farms/choihooo" width="800" />
+      </div>
     </div>
   );
 }

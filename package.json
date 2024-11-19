@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "script": "node scripts/generate-posts.js"
+    "post": "node scripts/generate-posts.js"
   },
   "dependencies": {
     "front-matter": "^4.0.2",
