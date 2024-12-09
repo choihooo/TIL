@@ -11,6 +11,7 @@
     "post": "node scripts/generate-posts.js"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.4.1",
     "front-matter": "^4.0.2",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.10.0",

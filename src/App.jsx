@@ -5,6 +5,7 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import LeftSidebar from "./components/LeftSidebar/LeftSidebar";
@@ -44,9 +45,11 @@ function Layout() {
 
 function App() {
   return (
-    <Router>
-      <Layout />
-    </Router>
+    <Analytics>
+      <Router>
+        <Layout />
+      </Router>
+    </Analytics>
   );
 }
 
