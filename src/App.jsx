@@ -45,11 +45,10 @@ function Layout() {
 
 function App() {
   return (
-    <Analytics>
-      <Router>
-        <Layout />
-      </Router>
-    </Analytics>
+    <Router>
+      <Analytics />
+      <Layout />
+    </Router>
   );
 }
 
