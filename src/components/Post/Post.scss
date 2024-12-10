@@ -1,23 +1,40 @@
 @use "@styles/_variables.scss" as *;
 
 .post {
-  display: block;
+  display: flex;
+  align-items: flex-start;
   text-decoration: none;
   background-color: $b-50;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
   color: $b-900;
 
+  &__content {
+    flex: 1; // 나머지 내용이 공간을 차지하도록 함
+    padding-right: 10px;
+  }
+
   &__info {
     display: flex;
-    justify-items: center;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
   }
+
+  &__thumbnail-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  &__thumbnail {
+    width: 210px;
+    height: 140px;
+    border-radius: 8px;
+  }
+
   &__title {
     font-size: 1.5rem;
     font-weight: bold;
-
     color: $primary-100;
   }
 
@@ -26,37 +43,10 @@
     color: $b-500;
   }
 
-  &__category {
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-
-    strong {
-      font-weight: bold;
-      color: $b-700;
-    }
-
-    &-main {
-      color: $primary-100;
-      font-weight: bold;
-    }
-  }
-
-  &__tags {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-
-    strong {
-      font-weight: bold;
-      color: $b-700;
-    }
-  }
-
   &__excerpt {
     font-size: 1rem;
     color: $b-700;
     line-height: 1.5;
-    margin-top: 15px;
+    margin-top: 5px;
   }
 }

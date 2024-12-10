@@ -46,7 +46,7 @@ function Layout() {
 function App() {
   return (
     <Router>
-      <Analytics />
+      {/* <Analytics /> */}
       <Layout />
     </Router>
   );

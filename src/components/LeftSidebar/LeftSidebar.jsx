@@ -10,7 +10,7 @@ function LeftSidebar() {
           alt="Profile"
           className="left-sidebar__profile-image"
         />
-        <h2 className="left-sidebar__profile-name">최호 | Choi Ho</h2>
+        <h2 className="left-sidebar__profile-name">최호 | Howu</h2>
         <p className="left-sidebar__profile-description">
           예, 코딩은 잘 모르고요. 그냥 열심히 합니다. 열심히
         </p>

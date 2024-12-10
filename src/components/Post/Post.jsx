@@ -10,12 +10,21 @@ function Post({ post }) {
 
   return (
     <Link to={`/post/${post.id}`} className="post">
-      <div>
+      <div className="post__content">
         <div className="post__info">
           <h2 className="post__title">{post.title}</h2>
           <p className="post__date">{post.date}</p>
+          <p className="post__excerpt">{post.excerpt}</p>
         </div>
-        {/* <div className="post__category">
+      </div>
+      <div className="post__thumbnail-wrapper">
+        <img
+          src={post.thumbnail}
+          alt={post.title}
+          className="post__thumbnail"
+        />
+      </div>
+      {/* <div className="post__category">
           <strong>Category: </strong>
           <span className="post__category-main">
             {post.category.main + "/" + post.category.sub}
@@ -27,8 +36,6 @@ function Post({ post }) {
             <Tag key={index} label={tag} />
           ))}
         </div> */}
-        <p className="post__excerpt">{post.excerpt}</p>
-      </div>
     </Link>
   );
 }

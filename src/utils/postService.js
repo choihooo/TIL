@@ -17,6 +17,7 @@ export async function getPosts() {
         excerpt: body.slice(0, 100) + "...",
         category: attributes.category,
         tags: attributes.tags || [],
+        thumbnail: attributes.thumbnail || "/images/default.png",
       };
     })
   );
@@ -35,5 +36,6 @@ export async function getPost(id) {
     category: attributes.category,
     tags: attributes.tags || [],
     content: body,
+    thumbnail: attributes.thumbnail || "/images/default.png",
   };
 }
