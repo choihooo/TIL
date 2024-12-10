@@ -6,7 +6,7 @@ function LeftSidebar() {
     <aside className="content-layout__sidebar content-layout__sidebar--left">
       <div className="left-sidebar__profile">
         <img
-          src="https://avatars.githubusercontent.com/u/67588757?s=96&v=4" // 프로필 사진
+          src="/images/profile.jpeg"
           alt="Profile"
           className="left-sidebar__profile-image"
         />
