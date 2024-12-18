@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Tag from "../Tag/Tag";
+import { Helmet } from "react-helmet-async";
 import "./Post.scss";
 
 function Post({ post }) {
@@ -9,34 +9,38 @@ function Post({ post }) {
   };
 
   return (
-    <Link to={`/post/${post.id}`} className="post">
-      <div className="post__content">
-        <div className="post__info">
-          <h2 className="post__title">{post.title}</h2>
-          <p className="post__date">{post.date}</p>
-          <p className="post__excerpt">{post.excerpt}</p>
-        </div>
-      </div>
-      <div className="post__thumbnail-wrapper">
-        <img
-          src={post.thumbnail}
-          alt={post.title}
-          className="post__thumbnail"
+    <>
+      {/* React Helmet으로 동적 메타 태그 설정 */}
+      <Helmet>
+        <title>{post.title} - My Blog</title>
+        <meta name="description" content={post.excerpt} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:image" content={post.thumbnail} />
+        <meta
+          property="og:url"
+          content={`https://yourblog.com/post/${post.id}`}
         />
-      </div>
-      {/* <div className="post__category">
-          <strong>Category: </strong>
-          <span className="post__category-main">
-            {post.category.main + "/" + post.category.sub}
-          </span>
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
+      <Link to={`/post/${post.id}`} className="post">
+        <div className="post__content">
+          <div className="post__info">
+            <h2 className="post__title">{post.title}</h2>
+            <p className="post__date">{post.date}</p>
+            <p className="post__excerpt">{post.excerpt}</p>
+          </div>
         </div>
-        <div className="post__tags">
-          <strong>Tags: </strong>
-          {post.tags.map((tag, index) => (
-            <Tag key={index} label={tag} />
-          ))}
-        </div> */}
-    </Link>
+        <div className="post__thumbnail-wrapper">
+          <img
+            src={post.thumbnail}
+            alt={post.title}
+            className="post__thumbnail"
+          />
+        </div>
+      </Link>
+    </>
   );
 }
 
