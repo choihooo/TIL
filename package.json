@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "post": "node scripts/generate-posts.js",
-    "sitemap": "node scripts/generate-sitemap.js"
+    "sitemap": "node scripts/generate-sitemap.js",
+    "postbuild": "npm run post && npm run sitemap"
   },
   "dependencies": {
     "@vercel/analytics": "^1.4.1",
