@@ -13,11 +13,11 @@ import RightSidebar from "./components/RightSidebar/RightSidebar";
 import Home from "./pages/Home/Home";
 import PostDetail from "./pages/PostDetail/PostDetail";
 import "./App.scss";
+import { HelmetProvider } from "react-helmet-async";
 
 function Layout() {
   const location = useLocation();
 
-  // 특정 경로에서 사이드바를 숨김
   const isPostDetailPage = location.pathname.startsWith("/post");
 
   return (
@@ -45,10 +45,12 @@ function Layout() {
 
 function App() {
   return (
-    <Router>
-      <Analytics />
-      <Layout />
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <Analytics />
+        <Layout />
+      </Router>
+    </HelmetProvider>
   );
 }
 

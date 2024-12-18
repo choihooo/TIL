@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "post": "node scripts/generate-posts.js"
+    "post": "node scripts/generate-posts.js",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "postbuild": "npm run post && npm run sitemap"
   },
   "dependencies": {
     "@vercel/analytics": "^1.4.1",
@@ -18,6 +20,7 @@
     "prismjs": "^1.29.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.28.0",
     "react-syntax-highlighter": "^15.6.1",
@@ -26,7 +29,8 @@
     "rehype-slug": "^6.0.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "sitemap-generator": "^8.5.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
