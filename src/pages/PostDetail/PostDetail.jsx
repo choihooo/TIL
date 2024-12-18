@@ -6,8 +6,7 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Helmet } from "react-helmet-async"; // Helmet 추가
 import Tag from "../../components/Tag/Tag";
 import "highlight.js/styles/github.css";
 import "./PostDetail.scss";
@@ -24,12 +23,18 @@ function PostDetail() {
 
   useEffect(() => {
     const fetchPostContent = async () => {
-      const { content, title, date, category, tags } = await getPost(id);
+      const { content, title, date, category, tags, thumbnail } = await getPost(
+        id
+      );
       setPostContent(content);
       setPostTitle(title);
       setPostDate(date);
       setPostCategory(category);
       setPostTags(tags);
+      // 동적 썸네일 설정: 썸네일 URL이 없으면 기본 이미지 사용
+      const thumbnailUrl =
+        thumbnail || `https://blog.howu.run/images/default-thumbnail.jpg`;
+      setPostCategory((prev) => ({ ...prev, thumbnailUrl }));
     };
     fetchPostContent();
   }, [id]);
@@ -50,6 +55,22 @@ function PostDetail() {
 
   return (
     <div className="post-detail">
+      {/* React Helmet으로 메타 태그 설정 */}
+      <Helmet>
+        <title>{postTitle} - Howu</title>
+        <meta name="description" content={postContent.substring(0, 150)} />
+        <meta property="og:title" content={postTitle} />
+        <meta
+          property="og:description"
+          content={postContent.substring(0, 150)}
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://blog.howu.run/post/${id}`} />
+        <meta property="og:image" content={postCategory.thumbnailUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={postCategory.thumbnailUrl} />
+      </Helmet>
+
       <header className="post-detail__header">
         <h1 className="post-detail__header-title">{postTitle}</h1>
         <p className="post-detail__header-date">{postDate}</p>
@@ -79,29 +100,27 @@ function PostDetail() {
             ]}
             components={{
               li({ children, ...props }) {
-                const checkboxRegex = /^\[([ xX])\] (.+)$/; // 체크박스 패턴 정규식
+                const checkboxRegex = /^\[([ xX])\] (.+)$/;
                 const match = children[0]?.props?.children
                   ?.toString()
                   .match(checkboxRegex);
 
-                // 체크박스가 포함된 경우
                 if (match) {
-                  const isChecked = match[1].toLowerCase() === "x"; // 체크 여부 판단
-                  const text = match[2]; // 체크박스 이후 텍스트 추출
+                  const isChecked = match[1].toLowerCase() === "x";
+                  const text = match[2];
                   return (
                     <li {...props}>
                       <input
                         type="checkbox"
                         checked={isChecked}
                         readOnly
-                        className="markdown-checkbox" // 체크박스 스타일 클래스
+                        className="markdown-checkbox"
                       />
                       <span>{text}</span>
                     </li>
                   );
                 }
 
-                // 일반 리스트 항목
                 return <li {...props}>{children}</li>;
               },
               blockquote({ children }) {
@@ -112,13 +131,6 @@ function PostDetail() {
               },
               ol({ children }) {
                 return <ol className="custom-ol">{children}</ol>;
-              },
-              li({ children, ...props }) {
-                return (
-                  <li className="custom-li" {...props}>
-                    {children}
-                  </li>
-                );
               },
             }}
           >
