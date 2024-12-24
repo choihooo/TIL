@@ -6,12 +6,12 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import LeftSidebar from "./components/LeftSidebar/LeftSidebar";
-import RightSidebar from "./components/RightSidebar/RightSidebar";
-import Home from "./pages/Home/Home";
-import PostDetail from "./pages/PostDetail/PostDetail";
+import Header from "../shared/components/Header/Header";
+import Footer from "../shared/components/Footer/Footer";
+import LeftSidebar from "../shared/components/LeftSidebar/LeftSidebar";
+import Home from "../pages/Home";
+import Post from "../features/Post/pages/Post";
+import "./index.scss";
 import "./App.scss";
 import { HelmetProvider } from "react-helmet-async";
 
@@ -21,22 +21,16 @@ function Layout() {
   const isPostDetailPage = location.pathname.startsWith("/post");
 
   return (
-    <div
-      className={`app-container ${
-        isPostDetailPage ? "app-container--no-sidebar" : ""
-      }`}
-    >
+    <div>
       <Header className="header" />
       <div className="content-layout">
-        {/* PostDetail 페이지에서는 사이드바 숨기기 */}
         {!isPostDetailPage && <LeftSidebar className="left-sidebar" />}
         <main className="main">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/post/:id" element={<PostDetail />} />
+            <Route path="/post/:id" element={<Post />} />
           </Routes>
         </main>
-        {!isPostDetailPage && <RightSidebar className="right-sidebar" />}
       </div>
       <Footer className="footer" />
     </div>

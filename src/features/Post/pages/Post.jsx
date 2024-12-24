@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { getPost } from "../../utils/postService";
+import { getPost } from "../services/postService";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
 import { Helmet } from "react-helmet-async"; // Helmet 추가
-import Tag from "../../components/Tag/Tag";
+import Tag from "../../../shared/components/Tag/Tag";
 import "highlight.js/styles/github.css";
-import "./PostDetail.scss";
+import "../styles/Post.scss";
 
-function PostDetail() {
+function Post() {
   const { id } = useParams();
   const [postContent, setPostContent] = useState("");
   const [postTitle, setPostTitle] = useState("");
@@ -157,4 +157,4 @@ function PostDetail() {
   );
 }
 
-export default PostDetail;
+export default Post;
