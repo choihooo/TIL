@@ -1,22 +1,38 @@
 @use "@styles/_variables.scss" as *;
 
 .post-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; // 각 포스트 간의 간격 추가
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); // 바둑판 레이아웃
+  gap: 20px;
 
   &__item {
     padding: 20px;
-    border: 1px solid $b-300;
+    border: 1px solid $primary-40;
     border-radius: 8px;
-    background-color: $b-50;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+}
 
-    &:hover {
-      transform: translateY(-5px); // 마우스 호버 시 살짝 위로 올라가는 효과
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    }
+/* 반응형 스타일 */
+@media (max-width: 1024px) {
+  .post-list {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(220px, 1fr)
+    ); // 화면이 줄어들면 카드 너비 축소
+  }
+}
+
+@media (max-width: 768px) {
+  .post-list {
+    grid-template-columns: repeat(2, 1fr); // 태블릿에서 2열 레이아웃
+  }
+}
+
+@media (max-width: 480px) {
+  .post-list {
+    grid-template-columns: 1fr; // 모바일에서는 1열 레이아웃
   }
 }

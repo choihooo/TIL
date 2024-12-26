@@ -1,0 +1,78 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+
+  &--no-sidebar .app__main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.app__main {
+  display: grid;
+  grid-template-columns: 1fr 250px; // 메인과 사이드바
+  gap: 20px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.app__sidebar {
+  background-color: #f8f9fa;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  grid-column: 2 / 3;
+}
+
+.app__main-content {
+  grid-column: 1 / 2;
+  background-color: #ffffff;
+
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 1024px) {
+  .app__main {
+    grid-template-columns: 1fr; // 메인 전체 차지
+  }
+
+  .app__sidebar {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 0 10px;
+  }
+
+  .app__header {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .app__footer {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .app__main-content {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .app__sidebar {
+    padding: 10px;
+  }
+}
