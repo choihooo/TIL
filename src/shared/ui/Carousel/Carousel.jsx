@@ -19,13 +19,13 @@ function Carousel() {
     <div className={styles.carousel}>
       <Slider {...settings}>
         <div className={styles.carousel__item}>
-          <img src="/images/default.png" alt="Banner 1" />
+          <img src="/images/banner/banner1.png" alt="Banner 1" />
         </div>
         <div className={styles.carousel__item}>
-          <img src="/images/banner2.jpeg" alt="Banner 2" />
+          <img src="/images/banner/banner2.jpeg" alt="Banner 2" />
         </div>
         <div className={styles.carousel__item}>
-          <img src="/images/banner3.jpeg" alt="Banner 3" />
+          <img src="/images/banner/banner3.jpeg" alt="Banner 3" />
         </div>
       </Slider>
     </div>
