@@ -1,0 +1,38 @@
+@use "@styles/_variables.scss" as *;
+
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); // 바둑판 레이아웃
+  gap: 20px;
+
+  &__item {
+    padding: 20px;
+    border: 1px solid $primary-40;
+    border-radius: 8px;
+  }
+}
+
+/* 반응형 스타일 */
+@media (max-width: 1024px) {
+  .post-list {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(220px, 1fr)
+    ); // 화면이 줄어들면 카드 너비 축소
+  }
+}
+
+@media (max-width: 768px) {
+  .post-list {
+    grid-template-columns: repeat(2, 1fr); // 태블릿에서 2열 레이아웃
+  }
+}
+
+@media (max-width: 480px) {
+  .post-list {
+    grid-template-columns: 1fr; // 모바일에서는 1열 레이아웃
+  }
+}

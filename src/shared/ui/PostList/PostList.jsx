@@ -1,5 +1,5 @@
 import React from "react";
-import Post from "../Post/Post";
+import PostItem from "../PostItem/PostItem";
 import "./PostList.scss";
 
 function PostList({ posts }) {
@@ -12,16 +12,9 @@ function PostList({ posts }) {
     <div className="post-list">
       {sortedPosts.map((post) => (
         <div className="post-list__item" key={post.id}>
-          <Post post={post} />
+          <PostItem post={post} />
         </div>
       ))}
-      <div className="flex justify-center items-center w-full">
-        <img
-          src="https://render.gitanimals.org/farms/choihooo"
-          width="800"
-          alt="gitanimals"
-        />
-      </div>
     </div>
   );
 }

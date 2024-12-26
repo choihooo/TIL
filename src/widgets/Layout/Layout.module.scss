@@ -1,0 +1,100 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+
+  &--no-sidebar .app__main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.app__main {
+  display: grid;
+  grid-template-columns: 1fr 250px; // 기본 레이아웃 (메인 1fr + 사이드바 250px)
+  gap: 20px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  flex: 1;
+  align-items: start; // 그리드 아이템 상단 정렬
+}
+
+.app__sidebar {
+  background-color: #f8f9fa;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  grid-column: 2 / 3; // 데스크탑에서 사이드바는 오른쪽
+}
+
+.app__main-content {
+  grid-column: 1 / 2;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+/* 반응형 스타일 */
+
+/* 태블릿: 사이드바가 메인 콘텐츠 위로 이동 */
+@media (max-width: 1024px) {
+  .app__main {
+    grid-template-columns: 1fr; // 메인 콘텐츠만 전체 차지
+  }
+
+  .app__sidebar {
+    grid-column: 1 / -1; // 전체 너비 사용
+    margin-bottom: 20px;
+    order: 0; // 사이드바를 위로 이동
+  }
+
+  .app__main-content {
+    order: 1;
+    grid-column: 1 / -1; // 메인 콘텐츠도 전체 너비 사용
+  }
+}
+
+/* 모바일: 사이드바가 메인 콘텐츠 위로 이동 */
+@media (max-width: 768px) {
+  .app__sidebar {
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+    order: 0;
+  }
+
+  .app__main-content {
+    order: 1;
+    grid-column: 1 / -1;
+  }
+}
+
+/* 작은 모바일 화면 */
+@media (max-width: 480px) {
+  .app {
+    padding: 0 10px;
+  }
+
+  .app__header {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .app__footer {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .app__main-content {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .app__sidebar {
+    padding: 10px;
+  }
+}

@@ -7,7 +7,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
 import { Helmet } from "react-helmet-async"; // Helmet 추가
-import Tag from "../../components/Tag/Tag";
+import Tag from "../../shared/ui/Tag/Tag";
 import "highlight.js/styles/github.css";
 import "./PostDetail.scss";
 
@@ -57,18 +57,52 @@ function PostDetail() {
     <div className="post-detail">
       {/* React Helmet으로 메타 태그 설정 */}
       <Helmet>
-        <title>{postTitle} - Howu</title>
-        <meta name="description" content={postContent.substring(0, 150)} />
-        <meta property="og:title" content={postTitle} />
+        <title>{postTitle ? `${postTitle} - Howu` : "Howu 블로그"}</title>
+        <meta
+          name="description"
+          content={
+            postContent
+              ? postContent.substring(0, 150)
+              : "Howu 블로그 글입니다."
+          }
+        />
+        <meta property="og:title" content={postTitle || "Howu 블로그"} />
         <meta
           property="og:description"
-          content={postContent.substring(0, 150)}
+          content={
+            postContent
+              ? postContent.substring(0, 150)
+              : "Howu 블로그 글입니다."
+          }
         />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://blog.howu.run/post/${id}`} />
-        <meta property="og:image" content={postCategory.thumbnailUrl} />
+        <meta
+          property="og:image"
+          content={
+            postCategory.thumbnailUrl ||
+            "https://blog.howu.run/images/default-thumbnail.jpg"
+          }
+        />
+
+        {/* Twitter 메타 태그 추가 */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={postCategory.thumbnailUrl} />
+        <meta name="twitter:title" content={postTitle || "Howu 블로그"} />
+        <meta
+          name="twitter:description"
+          content={
+            postContent
+              ? postContent.substring(0, 150)
+              : "Howu 블로그 글입니다."
+          }
+        />
+        <meta
+          name="twitter:image"
+          content={
+            postCategory.thumbnailUrl ||
+            "https://blog.howu.run/images/default-thumbnail.jpg"
+          }
+        />
       </Helmet>
 
       <header className="post-detail__header">

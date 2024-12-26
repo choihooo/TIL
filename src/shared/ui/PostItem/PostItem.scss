@@ -2,16 +2,16 @@
 
 .post {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   text-decoration: none;
-  background-color: $b-50;
   padding: 5px;
+  gap: 4px;
   border-radius: 10px;
   color: $b-900;
 
   &__content {
-    flex: 1; // 나머지 내용이 공간을 차지하도록 함
-    padding-right: 10px;
+    margin-top: 4px;
   }
 
   &__info {
@@ -27,7 +27,7 @@
   }
 
   &__thumbnail {
-    width: 210px;
+    width: 100%;
     height: 140px;
     border-radius: 8px;
   }
@@ -35,7 +35,6 @@
   &__title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: $primary-100;
   }
 
   &__date {
