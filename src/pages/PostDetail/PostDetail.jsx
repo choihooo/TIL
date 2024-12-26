@@ -10,8 +10,6 @@ import { Helmet } from "react-helmet-async"; // Helmet 추가
 import Tag from "../../shared/ui/Tag/Tag";
 import "highlight.js/styles/github.css";
 import "./PostDetail.scss";
-import Header from "../../widgets/Header/Header";
-import Footer from "../../widgets/Footer/Footer";
 
 function PostDetail() {
   const { id } = useParams();
@@ -106,7 +104,7 @@ function PostDetail() {
           }
         />
       </Helmet>
-      <Header />
+
       <header className="post-detail__header">
         <h1 className="post-detail__header-title">{postTitle}</h1>
         <p className="post-detail__header-date">{postDate}</p>
@@ -189,7 +187,6 @@ function PostDetail() {
           ))}
         </ul>
       </aside>
-      <Footer />
     </div>
   );
 }

@@ -20,8 +20,11 @@ function Layout() {
     >
       <Header className={styles.app__header} />
 
-      {/* 캐러셀 추가 (포스트 디테일 페이지 제외) */}
-      {!isPostDetailPage && <Carousel />}
+      {!isPostDetailPage && (
+        <div className={styles.app__carousel}>
+          <Carousel />
+        </div>
+      )}
 
       <div className={styles.app__main}>
         <main className={styles["app__main-content"]}>
