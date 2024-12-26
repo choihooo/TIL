@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async"; // Helmet 추가
-import PostList from "../../components/PostList/PostList";
+import PostList from "../../shared/ui/PostList/PostList";
 import { getPosts } from "../../utils/postService";
 import "./Home.scss";
 

@@ -7,7 +7,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
 import { Helmet } from "react-helmet-async"; // Helmet 추가
-import Tag from "../../components/Tag/Tag";
+import Tag from "../../shared/ui/Tag/Tag";
 import "highlight.js/styles/github.css";
 import "./PostDetail.scss";
 
