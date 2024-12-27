@@ -3,7 +3,7 @@
 .post-list {
   display: grid;
   grid-template-columns: repeat(
-    auto-fit,
+    auto-fill,
     minmax(280px, 1fr)
   ); // 바둑판 레이아웃
   gap: 20px;

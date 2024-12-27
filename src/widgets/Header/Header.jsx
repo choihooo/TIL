@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 
 const NAV_ITEMS = [
-  { path: "/", label: "All" },
-  { path: "/", label: "Dev" },
-  { path: "/", label: "Plan" },
-  { path: "/", label: "UI/UX" },
-  { path: "/", label: "Story" },
+  { path: "/", label: "ALL" },
+  { path: "/category/dev", label: "Dev" },
+  { path: "/category/plan", label: "Plan" },
+  { path: "/category/uiux", label: "UI/UX" },
+  { path: "/category/story", label: "Story" },
 ];
 
 function Header() {

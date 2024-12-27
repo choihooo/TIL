@@ -28,7 +28,7 @@ function Footer() {
           />
         </a>
       </div>
-      <p className="footer__text">&copy; 2024 My Markdown Blog</p>
+      <p className="footer__text">&copy; 2024 Howu Blog</p>
     </footer>
   );
 }

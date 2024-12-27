@@ -108,11 +108,6 @@ function PostDetail() {
       <header className="post-detail__header">
         <h1 className="post-detail__header-title">{postTitle}</h1>
         <p className="post-detail__header-date">{postDate}</p>
-        <div className="post-detail__header-category">
-          <span className="post-detail__header-category-main">
-            {postCategory.main + "/" + postCategory.sub}
-          </span>
-        </div>
         <div className="post-detail__header-tags">
           {postTags.map((tag, index) => (
             <Tag key={index} label={tag} />
