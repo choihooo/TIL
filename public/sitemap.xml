@@ -3,30 +3,37 @@
   
   <url>
     <loc>https://blog.howu.run</loc>
-    <lastmod>2024-12-18T02:43:22.649Z</lastmod>
+    <lastmod>2024-12-27T19:32:46.429Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-18</loc>
-    <lastmod>2024-12-18T02:43:22.649Z</lastmod>
+    <lastmod>2024-12-27T19:32:46.432Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-19</loc>
-    <lastmod>2024-12-18T02:43:22.649Z</lastmod>
+    <lastmod>2024-12-27T19:32:46.433Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-20</loc>
-    <lastmod>2024-12-18T02:43:22.649Z</lastmod>
+    <lastmod>2024-12-27T19:32:46.433Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.howu.run/category/dev</loc>
+    <lastmod>2024-12-27T19:32:46.433Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   
 </urlset>
