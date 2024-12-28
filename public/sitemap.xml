@@ -3,35 +3,49 @@
   
   <url>
     <loc>https://blog.howu.run</loc>
-    <lastmod>2024-12-27T19:32:46.429Z</lastmod>
+    <lastmod>2024-12-28T13:21:45.452Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-18</loc>
-    <lastmod>2024-12-27T19:32:46.432Z</lastmod>
+    <lastmod>2024-12-28T13:21:45.455Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-19</loc>
-    <lastmod>2024-12-27T19:32:46.433Z</lastmod>
+    <lastmod>2024-12-28T13:21:45.456Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-20</loc>
-    <lastmod>2024-12-27T19:32:46.433Z</lastmod>
+    <lastmod>2024-12-28T13:21:45.456Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.howu.run/post/블로그를 시작하면서</loc>
+    <lastmod>2024-12-28T13:21:45.456Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/category/dev</loc>
-    <lastmod>2024-12-27T19:32:46.433Z</lastmod>
+    <lastmod>2024-12-28T13:21:45.456Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.howu.run/category/story</loc>
+    <lastmod>2024-12-28T13:21:45.456Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
