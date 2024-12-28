@@ -4,6 +4,7 @@
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
+  box-sizing: border-box;
 
   &__header {
     text-align: center;
@@ -14,9 +15,9 @@
 
       &-img {
         width: 100%;
-        max-width: 800px;
-        height: 300px;
-        object-fit: cover; // 비율을 유지하며 컨테이너에 꽉 차도록 설정
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
@@ -26,6 +27,7 @@
       font-size: 2rem;
       font-weight: bold;
       margin-bottom: 10px;
+      word-wrap: break-word;
     }
 
     &-date {
@@ -40,6 +42,7 @@
       align-items: center;
       gap: 10px;
       margin-bottom: 15px;
+      flex-wrap: wrap;
 
       div {
         font-size: 0.95rem;
@@ -47,19 +50,8 @@
         color: $b-700;
       }
 
-      &-main {
-        background-color: $primary-100;
-        color: $white;
-        padding: 5px 10px;
-        border-radius: 12px;
-        font-size: 0.85rem;
-        text-transform: capitalize;
-        font-weight: bold;
-      }
-
+      &-main,
       &-sub {
-        background-color: $accent-50;
-        color: $b-700;
         padding: 5px 10px;
         border-radius: 12px;
         font-size: 0.85rem;
@@ -71,17 +63,14 @@
       margin-top: 10px;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
 
       div {
         font-size: 0.95rem;
         font-weight: bold;
         color: $b-700;
-        margin-bottom: 10px;
       }
-
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
     }
   }
 
@@ -89,6 +78,7 @@
     &-markdown {
       line-height: 1.6;
       color: $b-700;
+      word-wrap: break-word;
 
       h1,
       h2,
@@ -100,26 +90,21 @@
         margin-bottom: 0.8rem;
       }
 
-      a {
-      }
-
       ul {
-        list-style: none;
-        padding-left: 0;
+        padding-left: 1.5rem;
 
         li {
           margin-bottom: 8px;
 
-          // 체크박스 스타일
           .markdown-checkbox {
-            appearance: none; // 모든 브라우저의 기본 스타일 제거
+            appearance: none;
             border: 1px solid black;
             background-color: $white;
             width: 16px;
             height: 16px;
             margin-right: 8px;
-            border-radius: 4px; // 네모난 체크박스에 둥근 모서리 추가
-            cursor: pointer; // 클릭 가능한 상태로 표시
+            border-radius: 4px;
+            cursor: pointer;
 
             &:checked {
               background-color: $primary-100;
@@ -127,55 +112,48 @@
             }
 
             &:disabled {
-              background-color: $b-200; // 비활성화된 상태의 배경색
+              background-color: $b-200;
               cursor: not-allowed;
             }
           }
 
-          // 텍스트 스타일
           span {
             color: $b-700;
             font-size: 1rem;
             line-height: 1.6;
 
             &.nested-text {
-              padding-left: 24px; // 하위 텍스트 들여쓰기
+              padding-left: 24px;
               color: $b-500;
               font-size: 0.95rem;
             }
           }
         }
-
-        // 중첩된 리스트 스타일
-        ul {
-          padding-left: 24px; // 부모 리스트와의 간격
-          margin-top: 8px;
-
-          li {
-            margin-bottom: 6px;
-
-            .markdown-checkbox {
-              width: 14px;
-              height: 14px;
-            }
-          }
-        }
       }
 
-      // input 스타일 초기화 무시
-      input[type="checkbox"] {
-        appearance: checkbox; // 기본 체크박스 스타일 유지
-        border: none;
-        cursor: not-allowed;
-        margin-right: 8px;
+      pre {
+        overflow-x: auto;
+        max-width: 100%;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      table {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        display: block;
       }
     }
   }
 
   &__toc {
     position: fixed;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
     width: 200px;
     margin-top: 100px;
     margin-right: 50px;
@@ -186,42 +164,49 @@
     &-title {
       font-size: 1.2rem;
       font-weight: bold;
-      margin-bottom: 10px;
     }
 
-    &-list {
-      list-style: none;
-      padding-left: 0;
+    &-list-item {
+      margin-bottom: 5px;
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-height: 1.4;
+      max-height: 2.8em;
 
-      &-item {
-        margin-bottom: 5px;
-        white-space: normal; // 여러 줄 허용
-        overflow: hidden; // 내용이 넘치면 숨김
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2; // 최대 2줄로 제한
-        -webkit-box-orient: vertical;
-        line-height: 1.4; // 줄 간격 조정
-        max-height: 2.8em;
-        a {
-          color: $b-700;
-          text-decoration: none;
-          display: block;
-          max-width: 100%;
+      a {
+        color: $b-700;
+        text-decoration: none;
+        display: block;
+        max-width: 100%;
 
-          &:hover {
-            color: $primary-100;
-          }
+        &:hover {
+          color: $primary-100;
         }
       }
     }
   }
 }
 
-.post-detail__content-markdown code {
-  background-color: #e8e8e8;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
+.post-detail__content-markdown {
+  pre {
+    overflow-x: auto; // 코드 블록에 가로 스크롤 적용
+    max-width: 100%; // 부모 요소를 넘지 않도록 설정
+    white-space: pre-wrap; // 코드가 자동으로 줄바꿈되도록 설정
+    word-break: break-word; // 긴 단어는 강제로 줄바꿈
+  }
+
+  code {
+    background-color: #e8e8e8;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-width: 100%;
+  }
 }
 
 .markdown-container {
@@ -230,55 +215,97 @@
   .custom-ul,
   .custom-ol {
     margin: 1rem 0;
-    padding-left: 1.5rem; // 기본 들여쓰기
-  }
-
-  .custom-ul {
-    list-style-type: disc; // 순서 없는 목록 표시 추가
-  }
-  .custom-ol {
-    list-style: decimal; // 숫자 스타일
+    padding-left: 1.5rem;
   }
 
   .custom-li {
     margin-bottom: 0.5rem;
-
-    &::marker {
-      color: #555;
-    }
-  }
-
-  ul ul,
-  ol ol,
-  ul ol,
-  ol ul,
-  ol li {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding-left: 0.5rem; // 중첩된 리스트 더 깊게 들여쓰기
   }
 }
 
 .highlight {
   padding: 0 4px;
   border-radius: 4px;
-  font-weight: bold;
 
   &--blue {
-    background-color: #bbdefb; // 연한 파랑
+    background-color: #bbdefb;
   }
 
   &--yellow {
-    background-color: #fff59d; // 연한 노랑
+    background-color: #fff59d;
   }
 
   &--red {
-    background-color: #ef9a9a; // 연한 빨강
+    background-color: #ef9a9a;
   }
 }
 
+// 반응형
 @media (max-width: 1024px) {
-  .post-detail__toc {
-    display: none;
+  .post-detail {
+    padding: 10px;
+
+    &__header {
+      &-title {
+        font-size: 1.5rem;
+      }
+
+      &-thumbnail-img {
+        height: auto;
+      }
+    }
+
+    &__content {
+      font-size: 0.95rem;
+    }
+
+    &__toc {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .post-detail__header {
+    &-title {
+      font-size: 1.3rem;
+    }
+
+    &-category {
+      gap: 5px;
+
+      div {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .markdown-container {
+    .custom-ul,
+    .custom-ol {
+      padding-left: 1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .post-detail {
+    padding: 5px;
+
+    &__header {
+      &-title {
+        font-size: 1.2rem;
+      }
+    }
+
+    &__content {
+      font-size: 0.85rem;
+
+      h1,
+      h2,
+      h3 {
+        font-size: 1.1rem;
+      }
+    }
   }
 }
