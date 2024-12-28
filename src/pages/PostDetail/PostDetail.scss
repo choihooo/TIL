@@ -9,6 +9,19 @@
     text-align: center;
     margin-bottom: 30px;
 
+    &-thumbnail {
+      margin-bottom: 1.5rem;
+
+      &-img {
+        width: 100%;
+        max-width: 800px;
+        height: 300px;
+        object-fit: cover; // 비율을 유지하며 컨테이너에 꽉 차도록 설정
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+    }
+
     &-title {
       font-size: 2rem;
       font-weight: bold;
@@ -243,6 +256,24 @@
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     padding-left: 0.5rem; // 중첩된 리스트 더 깊게 들여쓰기
+  }
+}
+
+.highlight {
+  padding: 0 4px;
+  border-radius: 4px;
+  font-weight: bold;
+
+  &--blue {
+    background-color: #bbdefb; // 연한 파랑
+  }
+
+  &--yellow {
+    background-color: #fff59d; // 연한 노랑
+  }
+
+  &--red {
+    background-color: #ef9a9a; // 연한 빨강
   }
 }
 
