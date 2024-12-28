@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 
@@ -11,6 +11,12 @@ const NAV_ITEMS = [
 ];
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.header__wrapper}>
@@ -25,11 +31,23 @@ function Header() {
           </Link>
         </h1>
 
-        <nav className={styles.header__nav}>
+        <button className={styles.header__menu_btn} onClick={toggleMenu}>
+          ☰
+        </button>
+
+        <nav
+          className={`${styles.header__nav} ${
+            isMenuOpen ? styles.header__nav_open : ""
+          }`}
+        >
           <ul className={styles.header__nav_list}>
             {NAV_ITEMS.map(({ path, label }) => (
               <li key={label} className={styles.header__nav_item}>
-                <Link to={path} className={styles.header__nav_link}>
+                <Link
+                  to={path}
+                  className={styles.header__nav_link}
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   {label}
                 </Link>
               </li>
