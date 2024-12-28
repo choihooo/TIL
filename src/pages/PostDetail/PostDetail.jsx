@@ -6,7 +6,7 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
-import { Helmet } from "react-helmet-async"; // Helmet 추가
+import { Helmet } from "react-helmet-async";
 import Tag from "../../shared/ui/Tag/Tag";
 import "highlight.js/styles/github.css";
 import "./PostDetail.scss";
@@ -31,7 +31,6 @@ function PostDetail() {
       setPostDate(date);
       setPostCategory(category);
       setPostTags(tags);
-      // 동적 썸네일 설정: 썸네일 URL이 없으면 기본 이미지 사용
       const thumbnailUrl =
         thumbnail || `https://blog.howu.run/images/default-thumbnail.jpg`;
       setPostCategory((prev) => ({ ...prev, thumbnailUrl }));
@@ -55,7 +54,6 @@ function PostDetail() {
 
   return (
     <div className="post-detail">
-      {/* React Helmet으로 메타 태그 설정 */}
       <Helmet>
         <title>{postTitle ? `${postTitle} - Howu` : "Howu 블로그"}</title>
         <meta
@@ -85,7 +83,6 @@ function PostDetail() {
           }
         />
 
-        {/* Twitter 메타 태그 추가 */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={postTitle || "Howu 블로그"} />
         <meta
@@ -106,6 +103,15 @@ function PostDetail() {
       </Helmet>
 
       <header className="post-detail__header">
+        {postCategory.thumbnailUrl && (
+          <div className="post-detail__header-thumbnail">
+            <img
+              src={postCategory.thumbnailUrl}
+              alt={postTitle}
+              className="post-detail__header-thumbnail-img"
+            />
+          </div>
+        )}
         <h1 className="post-detail__header-title">{postTitle}</h1>
         <p className="post-detail__header-date">{postDate}</p>
         <div className="post-detail__header-tags">
@@ -128,38 +134,34 @@ function PostDetail() {
               [rehypeAutolinkHeadings, { behavior: "wrap" }],
             ]}
             components={{
-              li({ children, ...props }) {
-                const checkboxRegex = /^\[([ xX])\] (.+)$/;
-                const match = children[0]?.props?.children
-                  ?.toString()
-                  .match(checkboxRegex);
+              p({ children, ...props }) {
+                const highlightRegex = /==\((파랑|노랑|빨강)\)(.+?)==/g;
+                const parts = children.toString().split(highlightRegex);
 
-                if (match) {
-                  const isChecked = match[1].toLowerCase() === "x";
-                  const text = match[2];
-                  return (
-                    <li {...props}>
-                      <input
-                        type="checkbox"
-                        checked={isChecked}
-                        readOnly
-                        className="markdown-checkbox"
-                      />
-                      <span>{text}</span>
-                    </li>
-                  );
-                }
+                return (
+                  <p {...props}>
+                    {parts.map((part, index) => {
+                      if (index % 3 === 1) {
+                        const colorClass =
+                          {
+                            파랑: "highlight--blue",
+                            노랑: "highlight--yellow",
+                            빨강: "highlight--red",
+                          }[part] || "highlight";
 
-                return <li {...props}>{children}</li>;
-              },
-              blockquote({ children }) {
-                return <blockquote>{children}</blockquote>;
-              },
-              ul({ children }) {
-                return <ul className="custom-ul">{children}</ul>;
-              },
-              ol({ children }) {
-                return <ol className="custom-ol">{children}</ol>;
+                        return (
+                          <mark
+                            key={index}
+                            className={`highlight ${colorClass}`}
+                          >
+                            {parts[index + 1]}
+                          </mark>
+                        );
+                      }
+                      return part;
+                    })}
+                  </p>
+                );
               },
             }}
           >
