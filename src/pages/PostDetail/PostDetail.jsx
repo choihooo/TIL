@@ -53,6 +53,29 @@ function PostDetail() {
     }
   }, [postContent]);
 
+  const renderCustomText = (text) => {
+    const highlightRegex = /==\((파랑|노랑|빨강)\)(.+?)==/g;
+    const parts = text.split(highlightRegex);
+
+    return parts.map((part, index) => {
+      if (index % 3 === 1) {
+        const colorClass =
+          {
+            파랑: "highlight--blue",
+            노랑: "highlight--yellow",
+            빨강: "highlight--red",
+          }[part] || "highlight";
+
+        return (
+          <mark key={index} className={`highlight ${colorClass}`}>
+            {parts[index + 1]}
+          </mark>
+        );
+      }
+      return part;
+    });
+  };
+
   return (
     <div className="post-detail">
       <Helmet>
@@ -90,13 +113,19 @@ function PostDetail() {
               rehypeSlug,
               [rehypeAutolinkHeadings, { behavior: "wrap" }],
             ]}
+            components={{
+              p({ children, ...props }) {
+                return (
+                  <p {...props}>{renderCustomText(children.toString())}</p>
+                );
+              },
+            }}
           >
             {postContent}
           </ReactMarkdown>
         </div>
       </main>
 
-      {/* TOC 컴포넌트 사용 */}
       <Toc headings={headings} postTitle={postTitle} />
     </div>
   );
