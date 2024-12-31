@@ -30,7 +30,6 @@
 
   &__thumbnail {
     width: 100%;
-    max-width: 250px; // 최대 너비 300px
     height: 140px; // 높이 140px 고정
     border-radius: 8px;
     object-fit: cover;
@@ -42,7 +41,6 @@
     font-size: 1.5rem;
     font-weight: bold;
     width: 100%; // 전체 너비 설정
-    max-width: 250px; // 최대 너비 설정
     white-space: nowrap; // 줄 바꿈 방지
     overflow: hidden; // 넘치는 텍스트 숨김
     text-overflow: ellipsis; // 말줄임표로 처리

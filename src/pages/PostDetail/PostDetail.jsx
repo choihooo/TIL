@@ -8,6 +8,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
 import { Helmet } from "react-helmet-async";
 import Tag from "../../shared/ui/Tag/Tag";
+import Toc from "../../shared/ui/Toc/Toc";
 import "highlight.js/styles/github.css";
 import "./PostDetail.scss";
 
@@ -52,54 +53,33 @@ function PostDetail() {
     }
   }, [postContent]);
 
+  const renderCustomText = (text) => {
+    const highlightRegex = /==\((파랑|노랑|빨강)\)(.+?)==/g;
+    const parts = text.split(highlightRegex);
+
+    return parts.map((part, index) => {
+      if (index % 3 === 1) {
+        const colorClass =
+          {
+            파랑: "highlight--blue",
+            노랑: "highlight--yellow",
+            빨강: "highlight--red",
+          }[part] || "highlight";
+
+        return (
+          <mark key={index} className={`highlight ${colorClass}`}>
+            {parts[index + 1]}
+          </mark>
+        );
+      }
+      return part;
+    });
+  };
+
   return (
     <div className="post-detail">
       <Helmet>
         <title>{postTitle ? `${postTitle} - Howu` : "Howu 블로그"}</title>
-        <meta
-          name="description"
-          content={
-            postContent
-              ? postContent.substring(0, 150)
-              : "Howu 블로그 글입니다."
-          }
-        />
-        <meta property="og:title" content={postTitle || "Howu 블로그"} />
-        <meta
-          property="og:description"
-          content={
-            postContent
-              ? postContent.substring(0, 150)
-              : "Howu 블로그 글입니다."
-          }
-        />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://blog.howu.run/post/${id}`} />
-        <meta
-          property="og:image"
-          content={
-            postCategory.thumbnailUrl ||
-            "https://blog.howu.run/images/default-thumbnail.jpg"
-          }
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={postTitle || "Howu 블로그"} />
-        <meta
-          name="twitter:description"
-          content={
-            postContent
-              ? postContent.substring(0, 150)
-              : "Howu 블로그 글입니다."
-          }
-        />
-        <meta
-          name="twitter:image"
-          content={
-            postCategory.thumbnailUrl ||
-            "https://blog.howu.run/images/default-thumbnail.jpg"
-          }
-        />
       </Helmet>
 
       <header className="post-detail__header">
@@ -135,32 +115,8 @@ function PostDetail() {
             ]}
             components={{
               p({ children, ...props }) {
-                const highlightRegex = /==\((파랑|노랑|빨강)\)(.+?)==/g;
-                const parts = children.toString().split(highlightRegex);
-
                 return (
-                  <p {...props}>
-                    {parts.map((part, index) => {
-                      if (index % 3 === 1) {
-                        const colorClass =
-                          {
-                            파랑: "highlight--blue",
-                            노랑: "highlight--yellow",
-                            빨강: "highlight--red",
-                          }[part] || "highlight";
-
-                        return (
-                          <mark
-                            key={index}
-                            className={`highlight ${colorClass}`}
-                          >
-                            {parts[index + 1]}
-                          </mark>
-                        );
-                      }
-                      return part;
-                    })}
-                  </p>
+                  <p {...props}>{renderCustomText(children.toString())}</p>
                 );
               },
             }}
@@ -170,20 +126,7 @@ function PostDetail() {
         </div>
       </main>
 
-      <aside className="post-detail__toc">
-        <h2 className="post-detail__toc-title">{postTitle}</h2>
-        <ul className="post-detail__toc-list">
-          {headings.map((heading) => (
-            <li
-              key={heading.id}
-              className="post-detail__toc-list-item"
-              style={{ marginLeft: (heading.level - 1) * 10 }}
-            >
-              <a href={`#${heading.id}`}>{heading.text}</a>
-            </li>
-          ))}
-        </ul>
-      </aside>
+      <Toc headings={headings} postTitle={postTitle} />
     </div>
   );
 }

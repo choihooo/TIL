@@ -1,0 +1,73 @@
+@use "@styles/_variables.scss" as *;
+
+.toc {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 200px;
+  margin-top: 100px;
+  margin-right: 50px;
+  padding: 15px;
+  border: 0.5px dotted $primary-100;
+  border-radius: 8px;
+
+  &__title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  &__list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  &__listItem {
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: block;
+
+    a {
+      text-decoration: none;
+      display: block;
+      max-width: 100%;
+    }
+
+    &--level-1 {
+      font-size: 1.2rem;
+      color: var(--b-900);
+    }
+
+    &--level-2 {
+      font-size: 1.1rem;
+      color: var(--b-700);
+    }
+
+    &--level-3 {
+      font-size: 1rem;
+      color: var(--b-500);
+    }
+
+    &--level-4 {
+      font-size: 0.95rem;
+      color: var(--b-400);
+    }
+
+    &--level-5,
+    &--level-6 {
+      font-size: 0.9rem;
+      color: var(--b-300);
+    }
+
+    a:hover {
+      color: var(--primary-100);
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

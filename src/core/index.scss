@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
 @font-face {
   font-family: "D2Coding";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff")
@@ -5,10 +7,11 @@
   font-weight: normal;
   font-style: normal;
 }
+
 :root {
   font-size: 100%;
   line-height: 1.5;
-  font-family: system-ui, sans-serif;
+  font-family: "Pretendard", sans-serif;
 }
 
 *,
@@ -33,7 +36,6 @@ body {
   text-size-adjust: 100%;
   color: inherit;
   background-color: #fff;
-  font-family: "D2Coding", monospace;
 }
 
 a {
