@@ -18,10 +18,7 @@
 /* 반응형 스타일 */
 @media (max-width: 1024px) {
   .post-list {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(220px, 1fr)
-    ); // 화면이 줄어들면 카드 너비 축소
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
 }
 
