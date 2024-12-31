@@ -53,7 +53,7 @@ function PostDetail() {
       setHeadings(tocItems);
     }
   }, [postContent]);
-
+  
   // rehype 플러그인: 텍스트 변환 (파랑, 노랑, 빨강 형광펜)
   const rehypeHighlightText = () => {
     return (tree) => {
