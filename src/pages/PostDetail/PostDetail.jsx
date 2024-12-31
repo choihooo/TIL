@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet-async";
 import Tag from "../../shared/ui/Tag/Tag";
 import Toc from "../../shared/ui/Toc/Toc";
 import "highlight.js/styles/github.css";
+import { visit } from "unist-util-visit";
 import "./PostDetail.scss";
 
 function PostDetail() {
@@ -53,27 +54,22 @@ function PostDetail() {
     }
   }, [postContent]);
 
-  const renderCustomText = (text) => {
-    const highlightRegex = /==\((파랑|노랑|빨강)\)(.+?)==/g;
-    const parts = text.split(highlightRegex);
-
-    return parts.map((part, index) => {
-      if (index % 3 === 1) {
-        const colorClass =
-          {
-            파랑: "highlight--blue",
-            노랑: "highlight--yellow",
-            빨강: "highlight--red",
-          }[part] || "highlight";
-
-        return (
-          <mark key={index} className={`highlight ${colorClass}`}>
-            {parts[index + 1]}
-          </mark>
-        );
-      }
-      return part;
-    });
+  // rehype 플러그인: 텍스트 변환 (파랑, 노랑, 빨강 형광펜)
+  const rehypeHighlightText = () => {
+    return (tree) => {
+      visit(tree, "text", (node) => {
+        const highlightRegex = /==\((파랑|노랑|빨강)\)(.+?)==/g;
+        node.value = node.value.replace(highlightRegex, (_, color, text) => {
+          const colorMap = {
+            파랑: "blue",
+            노랑: "yellow",
+            빨강: "red",
+          };
+          const colorClass = colorMap[color] || "yellow"; // 기본값은 노랑
+          return `<mark class="highlight highlight--${colorClass}">${text}</mark>`;
+        });
+      });
+    };
   };
 
   return (
@@ -111,13 +107,12 @@ function PostDetail() {
             rehypePlugins={[
               rehypeHighlight,
               rehypeSlug,
+              rehypeHighlightText,
               [rehypeAutolinkHeadings, { behavior: "wrap" }],
             ]}
             components={{
-              p({ children, ...props }) {
-                return (
-                  <p {...props}>{renderCustomText(children.toString())}</p>
-                );
+              p({ children }) {
+                return <p dangerouslySetInnerHTML={{ __html: children }} />;
               },
             }}
           >
