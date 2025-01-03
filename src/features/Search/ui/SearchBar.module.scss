@@ -1,0 +1,29 @@
+@use "@styles/_variables.scss" as *;
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 600px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 0.5px solid $primary-40;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:focus {
+    border-color: $primary-100;
+    box-shadow: 0 0 8px rgba(0, 120, 212, 0.3);
+  }
+
+  &::placeholder {
+    color: #aaa;
+    font-size: 14px;
+  }
+}
