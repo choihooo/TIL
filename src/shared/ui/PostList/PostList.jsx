@@ -9,11 +9,15 @@ function PostList({ posts }) {
 
   return (
     <div className="post-list">
-      {sortedPosts.map((post) => (
-        <div className="post-list__item" key={post.id}>
-          <PostItem post={post} />
-        </div>
-      ))}
+      {sortedPosts.length > 0 ? (
+        sortedPosts.map((post) => (
+          <div className="post-list__item" key={post.id}>
+            <PostItem post={post} />
+          </div>
+        ))
+      ) : (
+        <div className="post-list__empty">게시물이 없습니다.</div>
+      )}
     </div>
   );
 }
