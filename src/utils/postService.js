@@ -1,7 +1,7 @@
 import fm from "front-matter";
 
 // 전체 포스트 목록 또는 카테고리별 포스트 목록 불러오기
-export async function getPosts(category = null) {
+export async function getPosts(category = null, query = "") {
   try {
     const fileNames = await fetch("/posts.json").then((res) => res.json());
 
@@ -18,7 +18,6 @@ export async function getPosts(category = null) {
           date: attributes.date,
           excerpt: body.slice(0, 100) + "...",
           category: attributes.category.main,
-          subCategory: attributes.category.sub,
           tags: attributes.tags || [],
           thumbnail: attributes.thumbnail || "/images/default.png",
           content: body,
@@ -26,10 +25,19 @@ export async function getPosts(category = null) {
       })
     );
 
-    // 카테고리 필터링
-    const filteredPosts = category
+    let filteredPosts = category
       ? postData.filter((post) => post.category === category)
       : postData;
+
+    if (query) {
+      const lowerCaseQuery = query.toLowerCase();
+      filteredPosts = filteredPosts.filter(
+        (post) =>
+          post.title.toLowerCase().includes(lowerCaseQuery) ||
+          post.content.toLowerCase().includes(lowerCaseQuery) ||
+          post.tags.some((tag) => tag.toLowerCase().includes(lowerCaseQuery))
+      );
+    }
 
     return filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
   } catch (error) {
@@ -58,8 +66,4 @@ export async function getPost(id) {
     console.error(`Failed to fetch post: ${id}`, error);
     return null;
   }
-}
-
-export async function getPostsByCategory(category) {
-  return await getPosts(category);
 }
