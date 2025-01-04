@@ -3,63 +3,77 @@
   
   <url>
     <loc>https://blog.howu.run</loc>
-    <lastmod>2025-01-02T10:25:28.683Z</lastmod>
+    <lastmod>2025-01-04T03:44:12.860Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/UX 제이콥 법칙</loc>
-    <lastmod>2025-01-02T10:25:28.686Z</lastmod>
+    <lastmod>2025-01-04T03:44:12.863Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-18</loc>
-    <lastmod>2025-01-02T10:25:28.687Z</lastmod>
+    <lastmod>2025-01-04T03:44:12.865Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-19</loc>
-    <lastmod>2025-01-02T10:25:28.687Z</lastmod>
+    <lastmod>2025-01-04T03:44:12.865Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-20</loc>
-    <lastmod>2025-01-02T10:25:28.687Z</lastmod>
+    <lastmod>2025-01-04T03:44:12.866Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/블로그를 시작하면서</loc>
-    <lastmod>2025-01-02T10:25:28.688Z</lastmod>
+    <lastmod>2025-01-04T03:44:12.866Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.howu.run/post/서비스 기획에 대해서</loc>
+    <lastmod>2025-01-04T03:44:12.867Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/category/uiux</loc>
-    <lastmod>2025-01-02T10:25:28.688Z</lastmod>
+    <lastmod>2025-01-04T03:44:12.867Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/category/dev</loc>
-    <lastmod>2025-01-02T10:25:28.688Z</lastmod>
+    <lastmod>2025-01-04T03:44:12.867Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/category/story</loc>
-    <lastmod>2025-01-02T10:25:28.688Z</lastmod>
+    <lastmod>2025-01-04T03:44:12.867Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.howu.run/category/plan</loc>
+    <lastmod>2025-01-04T03:44:12.867Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
