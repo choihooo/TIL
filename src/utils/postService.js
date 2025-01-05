@@ -1,4 +1,5 @@
 import fm from "front-matter";
+import DOMPurify from "dompurify";
 
 // 전체 포스트 목록 또는 카테고리별 포스트 목록 불러오기
 export async function getPosts(category = null, query = "") {
@@ -29,11 +30,12 @@ export async function getPosts(category = null, query = "") {
         const markdown = await response.text();
         const { attributes, body } = fm(markdown);
 
-        console.log(`Fetched post: ${postId}`, attributes); // 포스트 메타데이터 확인
-
+        console.log(`Fetched post: ${postId}`, attributes);
+        const safeTitle = DOMPurify.sanitize(attributes.title || "Untitled");
+        console.log(safeTitle);
         return {
           id: postId,
-          title: attributes?.title || "Untitled",
+          title: safeTitle,
           date: attributes?.date || new Date().toISOString(),
           excerpt: body.slice(0, 100) + "...",
           category: attributes?.category?.main || "Uncategorized",
