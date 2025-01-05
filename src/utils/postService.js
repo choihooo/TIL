@@ -3,35 +3,54 @@ import fm from "front-matter";
 // 전체 포스트 목록 또는 카테고리별 포스트 목록 불러오기
 export async function getPosts(category = null, query = "") {
   try {
-    const fileNames = await fetch("/posts.json").then((res) => res.json());
+    const fileNames = await fetch("/posts.json")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to fetch posts.json: ${res.status}`);
+        }
+        return res.json();
+      })
+      .catch((error) => {
+        console.error("Error fetching posts.json:", error);
+        return [];
+      });
+
+    console.log("Fetched file names:", fileNames); // 파일 목록 확인
 
     const postData = await Promise.all(
       fileNames.map(async (postId) => {
-        const markdown = await fetch(`/posts/${postId}.md`).then((res) =>
-          res.text()
-        );
+        const response = await fetch(`/posts/${postId}.md`);
+
+        if (!response.ok) {
+          console.error(`Failed to fetch ${postId}.md: ${response.status}`);
+          return null; // 실패한 경우 null 반환
+        }
+
+        const markdown = await response.text();
         const { attributes, body } = fm(markdown);
+
+        console.log(`Fetched post: ${postId}`, attributes); // 포스트 메타데이터 확인
 
         return {
           id: postId,
-          title: attributes.title,
-          date: attributes.date,
+          title: attributes?.title || "Untitled",
+          date: attributes?.date || new Date().toISOString(),
           excerpt: body.slice(0, 100) + "...",
-          category: attributes.category.main,
-          tags: attributes.tags || [],
-          thumbnail: attributes.thumbnail || "/images/default.png",
+          category: attributes?.category?.main || "Uncategorized",
+          tags: attributes?.tags || [],
+          thumbnail: attributes?.thumbnail || "/images/default.png",
           content: body,
         };
       })
     );
 
-    let filteredPosts = category
-      ? postData.filter((post) => post.category === category)
-      : postData;
+    const filteredPosts = postData
+      .filter((post) => post !== null) // 실패한 포스트 제외
+      .filter((post) => !category || post.category === category);
 
     if (query) {
       const lowerCaseQuery = query.toLowerCase();
-      filteredPosts = filteredPosts.filter(
+      return filteredPosts.filter(
         (post) =>
           post.title.toLowerCase().includes(lowerCaseQuery) ||
           post.content.toLowerCase().includes(lowerCaseQuery) ||
@@ -39,6 +58,7 @@ export async function getPosts(category = null, query = "") {
       );
     }
 
+    console.log("Filtered Posts:", filteredPosts); // 필터링된 포스트 확인
     return filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
   } catch (error) {
     console.error("Failed to fetch posts:", error);
@@ -50,17 +70,24 @@ export async function getPosts(category = null, query = "") {
 export async function getPost(id) {
   try {
     const response = await fetch(`/posts/${id}.md`);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${id}.md: ${response.status}`);
+    }
+
     const markdown = await response.text();
     const { attributes, body } = fm(markdown);
 
+    console.log(`Fetched single post: ${id}`, attributes); // 단일 포스트 메타데이터 확인
+
     return {
-      title: attributes.title,
-      date: attributes.date,
-      category: attributes.category.main,
-      subCategory: attributes.category.sub,
-      tags: attributes.tags || [],
+      title: attributes?.title || "Untitled",
+      date: attributes?.date || new Date().toISOString(),
+      category: attributes?.category?.main || "Uncategorized",
+      subCategory: attributes?.category?.sub || "",
+      tags: attributes?.tags || [],
       content: body,
-      thumbnail: attributes.thumbnail || "/images/default.png",
+      thumbnail: attributes?.thumbnail || "/images/default.png",
     };
   } catch (error) {
     console.error(`Failed to fetch post: ${id}`, error);
