@@ -20,7 +20,7 @@ export default defineConfig({
   build: {
     outDir: "dist", // 빌드 결과 디렉토리
     rollupOptions: {
-      external: ["rehype-raw"],
+      external: ["rehype-raw", "dompurify"],
     },
   },
 });
