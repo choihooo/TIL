@@ -12,6 +12,8 @@ import Toc from "../../shared/ui/Toc/Toc";
 import "highlight.js/styles/github.css";
 import { visit } from "unist-util-visit";
 import "./PostDetail.scss";
+import rehypeRaw from "rehype-raw";
+import DOMPurify from "dompurify";
 
 function PostDetail() {
   const { id } = useParams();
@@ -72,6 +74,8 @@ function PostDetail() {
     };
   };
 
+  const cleanContent = DOMPurify.sanitize(postContent || "");
+
   return (
     <div className="post-detail">
       <Helmet>
@@ -107,10 +111,38 @@ function PostDetail() {
             rehypePlugins={[
               rehypeHighlight,
               rehypeSlug,
-              rehypeHighlightText,
+              rehypeHighlightText, // 형광펜 로직 반영
+              rehypeRaw,
               [rehypeAutolinkHeadings, { behavior: "wrap" }],
             ]}
             components={{
+              li({ children }) {
+                const content = Array.isArray(children)
+                  ? children.join("")
+                  : children;
+
+                const hasHtml = /<[^>]+>/.test(content);
+
+                return hasHtml ? (
+                  <li dangerouslySetInnerHTML={{ __html: content }} />
+                ) : (
+                  <li>{children}</li>
+                );
+              },
+              p({ children }) {
+                const content = Array.isArray(children)
+                  ? children.join("")
+                  : children;
+
+                // 형광펜이나 HTML 마크업이 포함된 경우
+                const hasHtml = /<[^>]+>/.test(content);
+
+                return hasHtml ? (
+                  <p dangerouslySetInnerHTML={{ __html: content }} />
+                ) : (
+                  <p>{children}</p>
+                );
+              },
               img: ({ node, ...props }) => {
                 const src = props.src.startsWith("http")
                   ? props.src
@@ -126,32 +158,9 @@ function PostDetail() {
                   />
                 );
               },
-              p({ node, children }) {
-                // children이 배열인지 확인하고 이미지가 포함된 경우 처리
-                if (
-                  Array.isArray(children) &&
-                  children.some((child) => child?.type === "img")
-                ) {
-                  return <>{children}</>;
-                }
-                return <p>{children}</p>;
-              },
-
-              input({ node, ...props }) {
-                if (props.type === "checkbox") {
-                  return (
-                    <input
-                      {...props}
-                      className="custom-checkbox"
-                      onChange={() => {}}
-                    />
-                  );
-                }
-                return <input {...props} />;
-              },
             }}
           >
-            {postContent}
+            {cleanContent}
           </ReactMarkdown>
         </div>
       </main>
