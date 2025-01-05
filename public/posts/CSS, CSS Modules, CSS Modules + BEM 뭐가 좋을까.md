@@ -1,5 +1,5 @@
 ---
-title: "CSS, CSS Modules, CSS Modules + BEM 뭐가 좋을까"
+title: "CSS, CSS Modules, CSS Modules BEM 뭐가 좋을까"
 date: "2025-01-05"
 tags: ["CSS", "SCSS", "style"]
 category:
