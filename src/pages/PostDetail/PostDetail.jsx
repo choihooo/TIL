@@ -111,9 +111,32 @@ function PostDetail() {
               [rehypeAutolinkHeadings, { behavior: "wrap" }],
             ]}
             components={{
-              p({ children }) {
-                return <p dangerouslySetInnerHTML={{ __html: children }} />;
+              img: ({ node, ...props }) => {
+                const src = props.src.startsWith("http")
+                  ? props.src
+                  : `${window.location.origin}${props.src}`;
+
+                return (
+                  <img
+                    {...props}
+                    src={src}
+                    alt={props.alt || "이미지"}
+                    loading="lazy"
+                    className="post-detail__image"
+                  />
+                );
               },
+              p({ node, children }) {
+                // children이 배열인지 확인하고 이미지가 포함된 경우 처리
+                if (
+                  Array.isArray(children) &&
+                  children.some((child) => child?.type === "img")
+                ) {
+                  return <>{children}</>;
+                }
+                return <p>{children}</p>;
+              },
+
               input({ node, ...props }) {
                 if (props.type === "checkbox") {
                   return (
