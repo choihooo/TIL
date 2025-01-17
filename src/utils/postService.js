@@ -16,8 +16,6 @@ export async function getPosts(category = null, query = "") {
         return [];
       });
 
-    console.log("Fetched file names:", fileNames); // 파일 목록 확인
-
     const postData = await Promise.all(
       fileNames.map(async (postId) => {
         const response = await fetch(`/posts/${postId}.md`);
@@ -29,10 +27,8 @@ export async function getPosts(category = null, query = "") {
 
         const markdown = await response.text();
         const { attributes, body } = fm(markdown);
-
-        console.log(`Fetched post: ${postId}`, attributes);
         const safeTitle = DOMPurify.sanitize(attributes.title || "Untitled");
-        console.log(safeTitle);
+
         return {
           id: postId,
           title: safeTitle,
@@ -59,8 +55,6 @@ export async function getPosts(category = null, query = "") {
           post.tags.some((tag) => tag.toLowerCase().includes(lowerCaseQuery))
       );
     }
-
-    console.log("Filtered Posts:", filteredPosts); // 필터링된 포스트 확인
     return filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
   } catch (error) {
     console.error("Failed to fetch posts:", error);
@@ -79,8 +73,6 @@ export async function getPost(id) {
 
     const markdown = await response.text();
     const { attributes, body } = fm(markdown);
-
-    console.log(`Fetched single post: ${id}`, attributes); // 단일 포스트 메타데이터 확인
 
     return {
       title: attributes?.title || "Untitled",
