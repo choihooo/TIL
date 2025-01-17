@@ -12,7 +12,6 @@ function CategoryPage() {
     const fetchPosts = async () => {
       const data = await getPosts(main);
       setPosts(data);
-      console.log(main);
     };
     fetchPosts();
   }, [main]);
