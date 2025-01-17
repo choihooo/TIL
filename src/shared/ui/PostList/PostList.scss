@@ -1,19 +1,11 @@
 @use "@styles/_variables.scss" as *;
 
 .post-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(280px, 1fr));
-  gap: 20px;
   min-height: 300px;
-
-  &__item {
-    padding: 20px;
-    border: 1px solid $primary-40;
-    border-radius: 8px;
-  }
-
+  width: 100%; // 기본적으로 너비를 100%로 설정하여 최대한 유연하게 만듭니다.
+  max-width: 800px; // 최대 너비를 800px로 설정하여 큰 화면에서도 적절한 크기를 유지합니다.
+  
   &__empty {
-    grid-column: 1 / -1;
     text-align: center;
     padding: 40px 0;
     font-size: 1.1rem;
@@ -21,21 +13,25 @@
   }
 }
 
-/* 반응형 스타일 */
-@media (max-width: 1024px) {
+// 반응형 미디어 쿼리
+@media (max-width: 1024px) { // 노트북과 대형 태블릿
   .post-list {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    max-width: 100%; // 화면 크기에 따라 너비를 100%로 조정
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) { // 태블릿
   .post-list {
-    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) { // 모바일
   .post-list {
-    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .post-list__empty {
+    font-size: 1rem; // 폰트 크기를 조금 더 작게 조정
   }
 }
