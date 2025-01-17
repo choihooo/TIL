@@ -5,6 +5,8 @@ import PostList from "../../shared/ui/PostList/PostList";
 import { getPosts } from "../../utils/postService";
 import styles from "./Home.module.scss";
 
+
+
 // URL에서 쿼리 스트링 읽는 훅
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -13,7 +15,7 @@ function useQuery() {
 function Home() {
   const [posts, setPosts] = useState([]);
   const query = useQuery().get("query") || ""; // 검색어 가져오기
-
+  
   // 포스트 가져오기 (검색어에 따라 필터링)
   useEffect(() => {
     const fetchPosts = async () => {
