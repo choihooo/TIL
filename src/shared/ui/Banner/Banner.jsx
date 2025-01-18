@@ -1,6 +1,6 @@
 import React from "react";
 import "./Banner.scss"; // SCSS 파일 임포트
-import TypingText from "../../../components/banner/TypingText/TypingText";
+import TypingText from "../../../components/Banner/TypingText/TypingText"
 
 function Banner() {
   const sentences = ["히히히히힛", "호호호홋", "하하하하핫"];
