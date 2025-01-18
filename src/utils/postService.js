@@ -36,7 +36,7 @@ export async function getPosts(category = null, query = "") {
           excerpt: body.slice(0, 100) + "...",
           category: attributes?.category?.main || "Uncategorized",
           tags: attributes?.tags || [],
-          thumbnail: attributes?.thumbnail || "/images/default.png",
+          thumbnail: attributes?.thumbnail || "/images/default.webp",
           content: body,
         };
       })
@@ -81,7 +81,7 @@ export async function getPost(id) {
       subCategory: attributes?.category?.sub || "",
       tags: attributes?.tags || [],
       content: body,
-      thumbnail: attributes?.thumbnail || "/images/default.png",
+      thumbnail: attributes?.thumbnail || "/images/default.webp",
     };
   } catch (error) {
     console.error(`Failed to fetch post: ${id}`, error);

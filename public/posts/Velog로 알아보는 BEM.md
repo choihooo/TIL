@@ -73,7 +73,7 @@ BEM은 블록, 엘리먼트, 모디파이어로 구성되어진다.
 
 예) `.button__icon`
 
-![BEM-element](/images/Velog로%20알아보는%20BEM/BEM-element.png)
+![BEM-element](/images/Velog로%20알아보는%20BEM/BEM-element.webp)
 
 ### 수정자 (Modifier)
 
@@ -89,7 +89,7 @@ BEM은 블록, 엘리먼트, 모디파이어로 구성되어진다.
 - `.button--disabled` (비활성화된 버튼)
 - `.card__title--highlight` (강조된 카드 제목)
 
-![BEM-modifier](/images/Velog로%20알아보는%20BEM/BEM-modifier.png)
+![BEM-modifier](/images/Velog로%20알아보는%20BEM/BEM-modifier.webp)
 
 ## 네이밍 규칙
 

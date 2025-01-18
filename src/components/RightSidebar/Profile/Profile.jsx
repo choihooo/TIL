@@ -5,7 +5,7 @@ function Profile() {
   return (
     <div className={styles["profile"]}>
       <img
-        src="/images/profile.jpeg"
+        src="/images/profile.webp"
         alt="Profile"
         className={styles["profile__image"]}
       />
