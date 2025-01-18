@@ -6,7 +6,7 @@ import RightSidebar from "../../shared/ui/RightSidebar/RightSidebar";
 import Home from "../../pages/Home/Home";
 import PostDetail from "../../pages/PostDetail/PostDetail";
 import CategoryPage from "../../pages/CategoryPage/CategoryPage";
-import Carousel from "../../shared/ui/Carousel/Carousel";
+import Banner from "../../shared/ui/Banner/Banner";
 import styles from "./Layout.module.scss";
 
 function Layout() {
@@ -24,7 +24,7 @@ function Layout() {
       {/* 캐러셀은 홈, 카테고리 페이지에서만 보이게 설정 */}
       {!isPostDetailPage && (
         <div className={styles.app__carousel}>
-          <Carousel />
+          <Banner />
         </div>
       )}
 
