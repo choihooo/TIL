@@ -23,7 +23,7 @@ function Header() {
         <h1 className={styles.header__title}>
           <Link to="/">
             <img
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="Howu Logo"
               className={styles.header__logo}
             />

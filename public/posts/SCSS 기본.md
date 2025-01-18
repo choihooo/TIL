@@ -5,7 +5,7 @@ tags: ["SCSS", "CSS", "스타일링"]
 category:
   main: "dev"
   sub: ""
-thumbnail: "/images/SCSS 기본/thumbnail.png"
+thumbnail: "/images/SCSS 기본/thumbnail.webp"
 ---
 
 SCSS는 Sass의 문법 중 하나로, CSS를 더욱 효율적으로 작성할 수 있도록 도와주는 CSS 전처리기이다.
@@ -427,7 +427,7 @@ $color2: #e74c3c;
 
 ## invert와 complement 차이
 
-![invert와 complement 차이](/images/SCSS%20기본/2.png)
+![invert와 complement 차이](/images/SCSS%20기본/2.webp)
 
 # 가져오기
 
