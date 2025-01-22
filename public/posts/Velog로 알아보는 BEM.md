@@ -55,7 +55,7 @@ BEM은 블록, 엘리먼트, 모디파이어로 구성되어진다.
 
 예) `.button`
 
-![BEM-block](/images/Velog로%20알아보는%20BEM/BEM-block.jpg)
+![BEM-block](/images/Velog로%20알아보는%20BEM/BEM-block.webp)
 
 벨로그 메인을 예로 들어 알아보자면 내가 생각하기에 블록은 이 정도 있는 것 같다.
 
