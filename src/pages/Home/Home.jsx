@@ -5,8 +5,6 @@ import PostList from "../../shared/ui/PostList/PostList";
 import { getPosts } from "../../utils/postService";
 import styles from "./Home.module.scss";
 
-
-
 // URL에서 쿼리 스트링 읽는 훅
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -15,7 +13,7 @@ function useQuery() {
 function Home() {
   const [posts, setPosts] = useState([]);
   const query = useQuery().get("query") || ""; // 검색어 가져오기
-  
+
   // 포스트 가져오기 (검색어에 따라 필터링)
   useEffect(() => {
     const fetchPosts = async () => {
@@ -39,6 +37,13 @@ function Home() {
           content="최호의 코딩 블로그입니다! 최신 글을 만나보세요."
         />
         <meta property="og:url" content="https://blog.howu.run" />
+        <meta
+          property="og:image"
+          content="https://blog.howu.run/images/banner.jpg"
+        />
+        <meta property="og:image:width" content="1200" /> // 적절한 이미지 크기
+        지정
+        <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 

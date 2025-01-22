@@ -80,6 +80,37 @@ function PostDetail() {
     <div className="post-detail">
       <Helmet>
         <title>{postTitle ? `${postTitle} - Howu` : "Howu 블로그"}</title>
+        <meta
+          property="og:title"
+          content={postTitle ? `${postTitle} - Howu` : "Howu 블로그"}
+        />
+        <meta
+          property="og:description"
+          content="Howu 블로그에서 제공하는 풍부한 컨텐츠를 만나보세요."
+        />
+        <meta
+          property="og:image"
+          content={`https://blog.howu.run${encodeURIComponent(
+            postCategory.thumbnailUrl
+          )}`}
+        />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={postTitle ? `${postTitle} - Howu` : "Howu 블로그"}
+        />
+        <meta
+          name="twitter:description"
+          content="Howu 블로그에서 제공하는 풍부한 컨텐츠를 만나보세요."
+        />
+        <meta
+          name="twitter:image"
+          content={`https://blog.howu.run${encodeURIComponent(
+            postCategory.thumbnailUrl
+          )}`}
+        />
       </Helmet>
 
       <header className="post-detail__header">

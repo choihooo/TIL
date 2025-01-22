@@ -1,0 +1,77 @@
+@use "@styles/_variables.scss" as *;
+
+.banner {
+  position: relative;
+  background-image: url("/images/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+
+  @media (max-width: 992px) { // 태블릿 및 이하
+    height: 300px;
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) { // 모바일
+    height: 200px;
+    font-size: 12px;
+    background-image: url("/images/banner.jpg"); // 모바일용 배경 이미지
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  &__text {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    z-index: 2;
+    font-size: 2rem;
+    max-width: 80%;
+
+    @media (max-width: 992px) { // 태블릿 및 이하
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 480px) { // 모바일
+      font-size: 1rem;
+      flex-direction: column;
+    }
+
+    &-type {
+      margin-left: 6px;
+      color: $primary-100;
+    }
+  }
+}
+
+.cursor {
+  font-weight: bold;
+  opacity: 1;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
