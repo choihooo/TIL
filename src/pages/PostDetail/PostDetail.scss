@@ -151,38 +151,6 @@
   }
 }
 
-.post-detail__content-markdown {
-  pre {
-    overflow-x: auto; // 코드 블록에 가로 스크롤 적용
-    max-width: 100%; // 부모 요소를 넘지 않도록 설정
-    white-space: pre-wrap; // 코드가 자동으로 줄바꿈되도록 설정
-    word-break: break-word; // 긴 단어는 강제로 줄바꿈
-  }
-
-  code {
-    background-color: #e8e8e8;
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    white-space: pre-wrap;
-    word-break: break-word;
-    max-width: 100%;
-  }
-}
-
-.markdown-container {
-  line-height: 1.6;
-
-  .custom-ul,
-  .custom-ol {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-  }
-
-  .custom-li {
-    margin-bottom: 0.5rem;
-  }
-}
-
 .highlight {
   padding: 0 4px;
   border-radius: 4px;
