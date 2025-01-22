@@ -77,24 +77,28 @@
 @media (max-width: 480px) {
   .app {
     padding: 0 10px;
+
+    &__main{
+      padding: 0px;
+    }
   }
 
   .app__header {
-    padding: 10px;
+    padding: 0px;
     font-size: 16px;
   }
 
   .app__footer {
-    padding: 10px;
+    padding: 0px;
     font-size: 14px;
   }
 
   .app__main-content {
-    padding: 10px;
+    padding: 0px;
     font-size: 14px;
   }
 
   .app__sidebar {
-    padding: 10px;
+    padding: 0px;
   }
 }
