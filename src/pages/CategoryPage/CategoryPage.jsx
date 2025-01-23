@@ -30,10 +30,10 @@ function CategoryPage() {
           property="og:description"
           content="최호의 코딩 블로그입니다! 최신 글을 만나보세요."
         />
-        <meta property="og:url" content="https://howu.run" />
+        <meta property="og:url" content="https://blog.howu.run" />
         <meta
           property="og:image"
-          content="https://howu.run/images/banner.jpg"
+          content="https://blog.howu.run/images/banner.jpg"
         />
         <meta property="og:image:width" content="1200" /> // 적절한 이미지 크기
         지정

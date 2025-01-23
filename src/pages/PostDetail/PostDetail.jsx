@@ -34,7 +34,7 @@ function PostDetail() {
       setPostCategory(category);
       setPostTags(tags);
       const thumbnailUrl =
-        thumbnail || `https://howu.run/images/default-thumbnail.jpg`;
+        thumbnail || `https://blog.howu.run/images/default-thumbnail.jpg`;
       setPostCategory((prev) => ({ ...prev, thumbnailUrl }));
     };
     fetchPostContent();
@@ -119,7 +119,7 @@ function PostDetail() {
         />
         <meta
           property="og:image"
-          content={`https://howu.run${encodeURIComponent(
+          content={`https://blog.howu.run${encodeURIComponent(
             postCategory.thumbnailUrl
           )}`}
         />
@@ -136,7 +136,7 @@ function PostDetail() {
         />
         <meta
           name="twitter:image"
-          content={`https://howu.run${encodeURIComponent(
+          content={`https://blog.howu.run${encodeURIComponent(
             postCategory.thumbnailUrl
           )}`}
         />

@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://howu.run/sitemap.xml
+Sitemap: https://blog.howu.run/sitemap.xml

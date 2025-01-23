@@ -8,7 +8,7 @@ const POSTS_DIR = path.resolve("./public/posts");
 const SITEMAP_PATH = path.join(PUBLIC_DIR, "sitemap.xml");
 
 // 기본 도메인
-const BASE_URL = "https://howu.run";
+const BASE_URL = "https://blog.howu.run";
 
 // 동적으로 URL을 생성하는 함수
 const generateSitemap = () => {
