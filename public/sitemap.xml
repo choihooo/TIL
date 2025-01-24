@@ -3,133 +3,140 @@
   
   <url>
     <loc>https://blog.howu.run</loc>
-    <lastmod>2025-01-22T03:18:10.323Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.034Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/CSS Modules BEM 비교</loc>
-    <lastmod>2025-01-22T03:18:10.326Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.037Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/SCSS 기본</loc>
-    <lastmod>2025-01-22T03:18:10.327Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.038Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/UX 제이콥 법칙</loc>
-    <lastmod>2025-01-22T03:18:10.328Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.039Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/Velog로 알아보는 BEM</loc>
-    <lastmod>2025-01-22T03:18:10.328Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.039Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-18</loc>
-    <lastmod>2025-01-22T03:18:10.328Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.039Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-19</loc>
-    <lastmod>2025-01-22T03:18:10.329Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.040Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/[LOG]2024-11-20</loc>
-    <lastmod>2025-01-22T03:18:10.329Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.040Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.howu.run/post/깃허브 페이지 서브 도메인으로 자동 배포하기</loc>
+    <lastmod>2025-01-24T03:32:46.040Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/깃허브 페이지 커스텀 도메인 연결하기</loc>
-    <lastmod>2025-01-22T03:18:10.329Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.040Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/모핑 리팩토링 1 - 계획 세우기</loc>
-    <lastmod>2025-01-22T03:18:10.330Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.041Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/번들러에 대해서</loc>
-    <lastmod>2025-01-22T03:18:10.330Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.041Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/블로그를 시작하면서</loc>
-    <lastmod>2025-01-22T03:18:10.331Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.041Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/서비스 기획에 대해서</loc>
-    <lastmod>2025-01-22T03:18:10.331Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.042Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/알고리즘 - 그래프</loc>
-    <lastmod>2025-01-22T03:18:10.331Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.042Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/post/알고리즘 - 그리디</loc>
-    <lastmod>2025-01-22T03:18:10.331Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.042Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/category/dev</loc>
-    <lastmod>2025-01-22T03:18:10.332Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.043Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/category/uiux</loc>
-    <lastmod>2025-01-22T03:18:10.332Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.043Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/category/story</loc>
-    <lastmod>2025-01-22T03:18:10.332Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.043Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://blog.howu.run/category/plan</loc>
-    <lastmod>2025-01-22T03:18:10.332Z</lastmod>
+    <lastmod>2025-01-24T03:32:46.043Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
