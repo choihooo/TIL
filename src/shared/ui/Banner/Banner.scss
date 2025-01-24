@@ -2,7 +2,7 @@
 
 .banner {
   position: relative;
-  background-image: url("/images/banner.jpg");
+  background-image: url("/images/banner.webp");
   background-size: cover;
   background-position: center;
   height: 400px;
@@ -21,7 +21,6 @@
   @media (max-width: 768px) { // 모바일
     height: 200px;
     font-size: 12px;
-    background-image: url("/images/banner.jpg"); // 모바일용 배경 이미지
   }
 
   &__overlay {
