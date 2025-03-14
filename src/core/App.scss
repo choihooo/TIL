@@ -67,3 +67,48 @@
     margin: 0;
   }
 }
+
+.choiho {
+  line-height: 200%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    max-width: 340px;
+  }
+  ul ul {
+    padding-left: 20px; /* 하위 리스트 들여쓰기 */
+    list-style-type: circle; /* 하위 리스트의 스타일 변경 */
+  }
+  ul,
+  ol {
+    padding-left: 20px; /* 하위 리스트 들여쓰기 */
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+
+  h6 {
+    font-size: 14px;
+  }
+}

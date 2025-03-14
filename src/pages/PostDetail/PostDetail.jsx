@@ -1,108 +1,66 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../utils/postService";
-import { Viewer } from "@toast-ui/react-editor";
-import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Helmet } from "react-helmet-async";
 import Tag from "../../shared/ui/Tag/Tag";
 import Toc from "../../shared/ui/Toc/Toc";
-import "highlight.js/styles/github.css";
-import hljs from "highlight.js";
 import "./PostDetail.scss";
-import DOMPurify from "dompurify";
+import MarkdownRenderer from "../../components/MarkdownRenderer";
 
 function PostDetail() {
   const { id } = useParams();
   const [postContent, setPostContent] = useState("");
   const [postTitle, setPostTitle] = useState("");
-  const viewerRef = useRef(null);
   const [postDate, setPostDate] = useState("");
   const [postCategory, setPostCategory] = useState({});
   const [postTags, setPostTags] = useState([]);
   const [headings, setHeadings] = useState([]);
-  const markdownRef = useRef(null);
 
   useEffect(() => {
     const fetchPostContent = async () => {
       const { content, title, date, category, tags, thumbnail } = await getPost(
         id
       );
-      const processedContent = processMarkdown(content);
-      setPostContent(processedContent);
+      setPostContent(content);
       setPostTitle(title);
       setPostDate(date);
-      setPostCategory(category);
+      setPostCategory({
+        ...category,
+        thumbnailUrl: thumbnail || "/default-thumbnail.jpg",
+      });
       setPostTags(tags);
-      const thumbnailUrl =
-        thumbnail || `https://blog.howu.run/images/default-thumbnail.jpg`;
-      setPostCategory((prev) => ({ ...prev, thumbnailUrl }));
+      extractHeadings(content);
     };
     fetchPostContent();
-  }, []);
+  }, [id]);
 
-  useEffect(() => {
-    if (viewerRef.current) {
-      const timeoutId = setTimeout(() => {
-        const viewerElement = viewerRef.current.getRootElement();
-        viewerElement.querySelectorAll("pre code").forEach((block) => {
-          hljs.highlightElement(block);
-        });
-      }, 100); // DOM 렌더링 대기 시간
-      return () => clearTimeout(timeoutId);
-    }
-  }, [postContent]);
+  const extractHeadings = (markdown) => {
+    const headingRegex = /^(#{1,6})\s+(.+)$/gm;
+    let match;
+    const tocItems = [];
+    const idMap = new Map(); // 🔥 중복된 ID를 방지하기 위한 Map 추가
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (viewerRef.current) {
-        const headingElements = Array.from(
-          viewerRef.current
-            .getRootElement()
-            .querySelectorAll("h1, h2, h3, h4, h5, h6")
-        );
-        const tocItems = headingElements.map((heading) => ({
-          id: heading.id,
-          text: heading.textContent,
-          level: parseInt(heading.tagName.replace("H", ""), 10),
-        }));
-        setHeadings(tocItems);
-      }
-    }, 100); // DOM 렌더링 대기
-  }, [postContent]);
-
-  useEffect(() => {
-    const cleanContent = DOMPurify.sanitize(postContent || "");
-    if (viewerRef.current) {
-      viewerRef.current.getInstance().setMarkdown(cleanContent);
-    }
-  }, [postContent]);
-
-  const processMarkdown = (markdown) => {
-    // 형광펜 처리
-    const highlightRegex = /==\((파랑|노랑|빨강)\)(.+?)==/g;
-    markdown = markdown.replace(highlightRegex, (match, color, text) => {
-      const colorMap = {
-        파랑: "blue",
-        노랑: "yellow",
-        빨강: "red",
-      };
-      const colorClass = colorMap[color];
-      return `<mark class="highlight highlight--${colorClass}">${text}</mark>`;
-    });
-
-    // 헤더 처리 및 ID 생성
-    const headerRegex = /^(#{1,6})\s+(.+)$/gm;
-    markdown = markdown.replace(headerRegex, (match, hashes, headerText) => {
-      const slug = headerText
+    while ((match = headingRegex.exec(markdown)) !== null) {
+      const level = match[1].length;
+      const text = match[2];
+      let id = text
         .toLowerCase()
         .replace(/\s+/g, "-")
         .replace(/[^\w-]+/g, "");
-      const level = hashes.length;
-      return `<h${level} id="${slug}">${headerText}</h${level}>`;
-    });
 
-    // XSS 공격 방지를 위해 DOMPurify를 사용하여 안전하게 처리
-    return DOMPurify.sanitize(markdown);
+      // 🔥 같은 id가 있다면 숫자 추가해서 고유하게 만듦
+      if (idMap.has(id)) {
+        const count = idMap.get(id) + 1;
+        idMap.set(id, count);
+        id = `${id}-${count}`;
+      } else {
+        idMap.set(id, 1);
+      }
+
+      tocItems.push({ id, text, level });
+    }
+
+    setHeadings(tocItems);
   };
 
   return (
@@ -117,12 +75,7 @@ function PostDetail() {
           property="og:description"
           content="Howu 블로그에서 제공하는 풍부한 컨텐츠를 만나보세요."
         />
-        <meta
-          property="og:image"
-          content={`https://blog.howu.run${encodeURIComponent(
-            postCategory.thumbnailUrl
-          )}`}
-        />
+        <meta property="og:image" content={postCategory.thumbnailUrl} />
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -134,12 +87,7 @@ function PostDetail() {
           name="twitter:description"
           content="Howu 블로그에서 제공하는 풍부한 컨텐츠를 만나보세요."
         />
-        <meta
-          name="twitter:image"
-          content={`https://blog.howu.run${encodeURIComponent(
-            postCategory.thumbnailUrl
-          )}`}
-        />
+        <meta name="twitter:image" content={postCategory.thumbnailUrl} />
       </Helmet>
 
       <header className="post-detail__header">
@@ -162,7 +110,7 @@ function PostDetail() {
       </header>
 
       <main className="post-detail__content">
-        <Viewer ref={viewerRef} initialValue={postContent} />
+        <MarkdownRenderer content={postContent} />
       </main>
 
       <Toc headings={headings} postTitle={postTitle} />
